@@ -1,6 +1,6 @@
 """
-The :mod:`skltemplate.utils.discovery` module includes utilities to discover
-objects (i.e. estimators, displays, functions) from the `skltemplate` package.
+The :mod:`imbcalibrate.utils.discovery` module includes utilities to discover
+objects (i.e. estimators, displays, functions) from the `imbalanced-learn` package.
 """
 
 # Adapted from scikit-learn
@@ -13,34 +13,18 @@ from importlib import import_module
 from operator import itemgetter
 from pathlib import Path
 
-from sklearn.base import (
-    BaseEstimator,
-    ClassifierMixin,
-    ClusterMixin,
-    RegressorMixin,
-    TransformerMixin,
-)
+from sklearn.base import BaseEstimator
 from sklearn.utils._testing import ignore_warnings
 
 _MODULE_TO_IGNORE = {"tests"}
 
 
-def all_estimators(type_filter=None):
-    """Get a list of all estimators from `skltemplate`.
+def all_estimators():
+    """Get a list of all estimators from `imbcalibrate`.
 
     This function crawls the module and gets all classes that inherit
     from `BaseEstimator`. Classes that are defined in test-modules are not
     included.
-
-    Parameters
-    ----------
-    type_filter : {"classifier", "regressor", "cluster", "transformer"} \
-            or list of such str, default=None
-        Which kind of estimators should be returned. If None, no filter is
-        applied and all estimators are returned.  Possible values are
-        'classifier', 'regressor', 'cluster' and 'transformer' to get
-        estimators only of these specific types, or a list of these to
-        get the estimators that fit at least one of the types.
 
     Returns
     -------
@@ -50,7 +34,7 @@ def all_estimators(type_filter=None):
 
     Examples
     --------
-    >>> from skltemplate.utils.discovery import all_estimators
+    >>> from imbcalibrate.utils.discovery import all_estimators
     >>> estimators = all_estimators()
     >>> type(estimators)
     <class 'list'>
@@ -64,12 +48,12 @@ def all_estimators(type_filter=None):
         return True
 
     all_classes = []
-    root = str(Path(__file__).parent.parent)  # skltemplate package
+    root = str(Path(__file__).parent.parent)
     # Ignore deprecation warnings triggered at import time and from walking
     # packages
     with ignore_warnings(category=FutureWarning):
         for _, module_name, _ in pkgutil.walk_packages(
-            path=[root], prefix="skltemplate."
+            path=[root], prefix="imbcalibrate."
         ):
             module_parts = module_name.split(".")
             if any(part in _MODULE_TO_IGNORE for part in module_parts):
@@ -92,33 +76,6 @@ def all_estimators(type_filter=None):
     # get rid of abstract base classes
     estimators = [c for c in estimators if not is_abstract(c[1])]
 
-    if type_filter is not None:
-        if not isinstance(type_filter, list):
-            type_filter = [type_filter]
-        else:
-            type_filter = list(type_filter)  # copy
-        filtered_estimators = []
-        filters = {
-            "classifier": ClassifierMixin,
-            "regressor": RegressorMixin,
-            "transformer": TransformerMixin,
-            "cluster": ClusterMixin,
-        }
-        for name, mixin in filters.items():
-            if name in type_filter:
-                type_filter.remove(name)
-                filtered_estimators.extend(
-                    [est for est in estimators if issubclass(est[1], mixin)]
-                )
-        estimators = filtered_estimators
-        if type_filter:
-            raise ValueError(
-                "Parameter type_filter must be 'classifier', "
-                "'regressor', 'transformer', 'cluster' or "
-                "None, got"
-                f" {repr(type_filter)}."
-            )
-
     # drop duplicates, sort for reproducibility
     # itemgetter is used to ensure the sort does not extend to the 2nd item of
     # the tuple
@@ -126,7 +83,7 @@ def all_estimators(type_filter=None):
 
 
 def all_displays():
-    """Get a list of all displays from `skltemplate`.
+    """Get a list of all displays from `imbcalibrate`.
 
     Returns
     -------
@@ -136,16 +93,16 @@ def all_displays():
 
     Examples
     --------
-    >>> from skltemplate.utils.discovery import all_displays
+    >>> from imbcalibrate.utils.discovery import all_displays
     >>> displays = all_displays()
     """
     all_classes = []
-    root = str(Path(__file__).parent.parent)  # skltemplate package
+    root = str(Path(__file__).parent.parent)
     # Ignore deprecation warnings triggered at import time and from walking
     # packages
     with ignore_warnings(category=FutureWarning):
         for _, module_name, _ in pkgutil.walk_packages(
-            path=[root], prefix="skltemplate."
+            path=[root], prefix="imbcalibrate."
         ):
             module_parts = module_name.split(".")
             if any(part in _MODULE_TO_IGNORE for part in module_parts):
@@ -170,14 +127,14 @@ def _is_checked_function(item):
         return False
 
     mod = item.__module__
-    if not mod.startswith("skltemplate.") or mod.endswith("estimator_checks"):
+    if not mod.startswith("imbcalibrate.") or mod.endswith("estimator_checks"):
         return False
 
     return True
 
 
 def all_functions():
-    """Get a list of all functions from `skltemplate`.
+    """Get a list of all functions from `imbcalibrate`.
 
     Returns
     -------
@@ -187,16 +144,16 @@ def all_functions():
 
     Examples
     --------
-    >>> from skltemplate.utils.discovery import all_functions
+    >>> from imbcalibrate.utils.discovery import all_functions
     >>> functions = all_functions()
     """
     all_functions = []
-    root = str(Path(__file__).parent.parent)  # skltemplate package
+    root = str(Path(__file__).parent.parent)
     # Ignore deprecation warnings triggered at import time and from walking
     # packages
     with ignore_warnings(category=FutureWarning):
         for _, module_name, _ in pkgutil.walk_packages(
-            path=[root], prefix="skltemplate."
+            path=[root], prefix="imbcalibrate."
         ):
             module_parts = module_name.split(".")
             if any(part in _MODULE_TO_IGNORE for part in module_parts):
