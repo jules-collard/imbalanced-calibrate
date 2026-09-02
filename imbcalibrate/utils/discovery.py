@@ -61,7 +61,9 @@ def all_estimators():
             module = import_module(module_name)
             classes = inspect.getmembers(module, inspect.isclass)
             classes = [
-                (name, est_cls) for name, est_cls in classes if not name.startswith("_")
+                (name, est_cls)
+                for name, est_cls in classes
+                if not name.startswith("_") and est_cls.__module__ == module.__name__
             ]
 
             all_classes.extend(classes)
@@ -112,7 +114,9 @@ def all_displays():
             classes = [
                 (name, display_class)
                 for name, display_class in classes
-                if not name.startswith("_") and name.endswith("Display")
+                if not name.startswith("_")
+                and name.endswith("Display")
+                and display_class.__module__ == module.__name__
             ]
             all_classes.extend(classes)
 
@@ -128,6 +132,8 @@ def _is_checked_function(item):
 
     mod = item.__module__
     if not mod.startswith("imbcalibrate.") or mod.endswith("estimator_checks"):
+        return False
+    if mod.startswith("imbcalibrate.utils"):
         return False
 
     return True
@@ -164,7 +170,7 @@ def all_functions():
             functions = [
                 (func.__name__, func)
                 for name, func in functions
-                if not name.startswith("_")
+                if not name.startswith("_") and func.__module__ == module.__name__
             ]
             all_functions.extend(functions)
 

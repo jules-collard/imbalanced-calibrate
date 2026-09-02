@@ -8,7 +8,7 @@ from imbcalibrate.utils.discovery import all_displays, all_estimators, all_funct
 
 def test_all_estimators():
     estimators = all_estimators()
-    assert len(estimators) == 3
+    assert len(estimators) == 1
 
 
 def test_all_displays():
