@@ -68,7 +68,7 @@ html_theme_options = {
 html_context = {
     "github_user": "jules-collard",
     "github_repo": "imbalanced-calibrate",
-    "github_version": "master",
+    "github_version": "main",
     "doc_path": "doc",
 }
 
