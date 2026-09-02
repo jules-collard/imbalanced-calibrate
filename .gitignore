@@ -75,4 +75,4 @@ target/
 .LSOverride
 
 # auto-generated files
-imbalanced-calibrate/_version.py
+imbcalibrate/_version.py
