@@ -99,15 +99,18 @@ class PriorCalibratedClassifier(MetaEstimatorMixin, ClassifierMixin, BaseEstimat
 
         # Data validation and type checking
         X, y = validate_data(
-            self, X=X, y=y, reset=True,
+            self,
+            X=X,
+            y=y,
+            reset=True,
         )
         check_classification_targets(y)
-        y_type = type_of_target(y, input_name='y', raise_unknown=True)
-        if y_type != 'binary':
+        y_type = type_of_target(y, input_name="y", raise_unknown=True)
+        if y_type != "binary":
             raise ValueError(
-                'Only binary classification is supported. The type of the target '
-                f'is {y_type}.'
-        )
+                "Only binary classification is supported. The type of the target "
+                f"is {y_type}."
+            )
 
         # Fit the estimator
         if self.estimator is None:
@@ -119,23 +122,21 @@ class PriorCalibratedClassifier(MetaEstimatorMixin, ClassifierMixin, BaseEstimat
         self.X_ = X
         self.y_ = y
 
-
         if self.weight is not None:
             if self.weight <= 0:
                 raise ValueError(
-                    "The weight must be a positive float. "
-                    f"Got weight={self.weight}."
+                    f"The weight must be a positive float. Got weight={self.weight}."
                 )
             self.weight_ = self.weight
         # Inherit weight from estimator if it has scale_pos_weight or class_weight
-        elif hasattr(self.estimator_, "scale_pos_weight"): # XGBoost and LightGBM
+        elif hasattr(self.estimator_, "scale_pos_weight"):  # XGBoost and LightGBM
             if self.weight is not None:
                 warn(
                     "The provided weight will be ignored since the estimator has "
                     "'scale_pos_weight' attribute."
                 )
             self.weight_ = self.estimator_.scale_pos_weight
-        elif hasattr(self.estimator_, "class_weight"): # Sklearn Logistic Regression
+        elif hasattr(self.estimator_, "class_weight"):  # Sklearn Logistic Regression
             if self.weight is not None:
                 warn(
                     "The provided weight will be ignored since the estimator has "
@@ -149,7 +150,7 @@ class PriorCalibratedClassifier(MetaEstimatorMixin, ClassifierMixin, BaseEstimat
                 weight_0 = cw.get(self.classes_[0], 1.0)
                 weight_1 = cw.get(self.classes_[1], 1.0)
                 self.weight_ = weight_1 / weight_0 if weight_0 != 0 else 1.0
-            elif cw == 'balanced':
+            elif cw == "balanced":
                 # Calculate ratio based on actual sample counts in 'y'
                 n_pos = np.sum(y == self.classes_[1])
                 n_neg = np.sum(y == self.classes_[0])
