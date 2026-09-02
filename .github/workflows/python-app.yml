@@ -17,17 +17,21 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
-      - uses: prefix-dev/setup-pixi@v0.8.1
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v4
         with:
-          pixi-version: v0.23.0
-          environments: ${{ matrix.environment }}
-          frozen: true
+          enable-cache: true
+          version: "latest"
+
+      - name: Install dependencies
+        run: uv sync --group ${{ matrix.environment }}
 
       - name: Run tests
-        run: pixi run -e ${{ matrix.environment }} test
+        run: uv run pytest -vsl --cov=imbcalibrate --cov-report=xml imbcalibrate
 
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v4.6.0
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          slug: scikit-learn-contrib/project-template
+          slug: jules-collard/imbalanced-calibrate
