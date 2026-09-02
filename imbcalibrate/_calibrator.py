@@ -50,11 +50,15 @@ class PriorCalibratedClassifier(MetaEstimatorMixin, ClassifierMixin, BaseEstimat
 
     # For @_fit_context decorator
     _parameter_constraints = {
-        "estimator": [BaseEstimator, None],
+        "estimator": [ClassifierMixin, None],
         "weight": [float, None],
     }
 
-    def __init__(self, estimator: None | BaseEstimator=None, weight: None | float=None):
+    def __init__(
+        self,
+        estimator: ClassifierMixin | None=None,
+        weight: float | None=None
+    ):
         self.estimator = estimator
         self.weight = weight
 
