@@ -1,0 +1,47 @@
+﻿PriorCalibratedClassifier
+====================================================
+
+.. currentmodule:: imbcalibrate
+
+.. autoclass:: PriorCalibratedClassifier
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      
+      
+        ~PriorCalibratedClassifier.fit
+      
+      
+        ~PriorCalibratedClassifier.get_metadata_routing
+      
+      
+        ~PriorCalibratedClassifier.get_params
+      
+      
+        ~PriorCalibratedClassifier.predict
+      
+      
+        ~PriorCalibratedClassifier.predict_proba
+      
+      
+        ~PriorCalibratedClassifier.score
+      
+      
+        ~PriorCalibratedClassifier.set_params
+      
+      
+        ~PriorCalibratedClassifier.set_score_request
+      
+   
+   
+
+.. include:: imbcalibrate.PriorCalibratedClassifier.examples
+
+.. raw:: html
+
+    <div style='clear:both'></div>
