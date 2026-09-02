@@ -1,7 +1,7 @@
 from warnings import warn
 
 import numpy as np
-from sklearn.base import BaseEstimator, ClassifierMixin, MetaEstimatorMixin, clone
+from sklearn.base import BaseEstimator, ClassifierMixin, MetaEstimatorMixin, clone, _fit_context
 from sklearn.linear_model import LogisticRegression
 from sklearn.utils.multiclass import check_classification_targets, type_of_target
 from sklearn.utils.validation import check_is_fitted, validate_data
@@ -48,6 +48,7 @@ class PriorCalibratedClassifier(MetaEstimatorMixin, ClassifierMixin, BaseEstimat
     --------
     """
 
+    # For @_fit_context decorator
     _parameter_constraints = {
         "estimator": [BaseEstimator, None],
         "weight": [float, None],
@@ -63,6 +64,7 @@ class PriorCalibratedClassifier(MetaEstimatorMixin, ClassifierMixin, BaseEstimat
         tags.classifier_tags.multi_class = False
         return tags
 
+    @_fit_context(prefer_skip_nested_validation=True)
     def fit(self, X, y, **fit_params):
         """Fit the model according to the given training data.
 
