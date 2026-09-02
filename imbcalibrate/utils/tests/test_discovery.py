@@ -1,8 +1,6 @@
 # Authors: scikit-learn-contrib developers
 # License: BSD 3 clause
 
-import pytest
-
 from imbcalibrate.utils.discovery import all_displays, all_estimators, all_functions
 
 

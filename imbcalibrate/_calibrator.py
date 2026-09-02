@@ -89,7 +89,8 @@ class PriorCalibratedClassifier(MetaEstimatorMixin, ClassifierMixin, BaseEstimat
             Target vector relative to X.
 
         **fit_params : kwargs
-            Additional fit parameters to pass to the underlying estimator's `fit` method.
+            Additional fit parameters to pass to the underlying estimator's `fit`
+            method.
 
         Returns
         -------
