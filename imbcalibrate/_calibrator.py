@@ -8,18 +8,26 @@ from sklearn.utils.validation import check_is_fitted, validate_data
 
 
 class PriorCalibratedClassifier(MetaEstimatorMixin, ClassifierMixin, BaseEstimator):
-    """An example classifier which implements a 1-NN algorithm.
-
-    For more information regarding how to build your own classifier, read more
-    in the :ref:`User Guide <user_guide>`.
+    """A meta-estimator which analytically calibrates the output of a binary classifier
+    to account for class balancing techniques..
 
     Parameters
     ----------
-    demo_param : str, default='demo'
-        A parameter used for demonstation of how to pass and store paramters.
+    estimator : estimator instance, default=None
+        The classifier whose output need to be calibrated to provide more accurate
+        `predict_proba` outputs. The default classifier is a `LogisticRegression`.
+
+    weight : float, default=None
+        The weight to be used for the prior calibration. If None, the weight will be
+        inferred from the estimator's `scale_pos_weight` or `class_weight` attributes if
+        available. If the estimator does not have these attributes and weight is None,
+        a warning will be issued and the weight will default to 1.0.
 
     Attributes
     ----------
+    estimator_ : estimator instance
+        The fitted (uncalibrated) estimator.
+
     X_ : ndarray, shape (n_samples, n_features)
         The input passed during :meth:`fit`.
 
@@ -40,13 +48,12 @@ class PriorCalibratedClassifier(MetaEstimatorMixin, ClassifierMixin, BaseEstimat
     --------
     """
 
-    # This is a dictionary allowing to define the type of parameters.
-    # It used to validate parameter within the `_fit_context` decorator.
     _parameter_constraints = {
-        "e": [str],
+        "estimator": [BaseEstimator, None],
+        "weight": [float, None],
     }
 
-    def __init__(self, estimator: None | ClassifierMixin=None, weight: None | float=None):
+    def __init__(self, estimator: None | BaseEstimator=None, weight: None | float=None):
         self.estimator = estimator
         self.weight = weight
 
@@ -67,6 +74,9 @@ class PriorCalibratedClassifier(MetaEstimatorMixin, ClassifierMixin, BaseEstimat
 
         y : array-like, shape (n_samples,)
             Target vector relative to X.
+
+        **fit_params : kwargs
+            Additional fit parameters to pass to the underlying estimator's `fit` method.
 
         Returns
         -------
@@ -137,24 +147,41 @@ class PriorCalibratedClassifier(MetaEstimatorMixin, ClassifierMixin, BaseEstimat
 
     def predict_proba(self, X):
         """
-        Extracts raw probabilities and applies the mathematical prior correction.
+        Calibrated probabilities of classification.
+
+        This function returns calibrated probabilities of classification according to
+        each class on an array of test vectors `X`.
+
+        Parameters
+        ----------
+        X : array-like, shape (n_samples, n_features)
+            The samples, as accepted by `estimator.predict_proba`.
+
+        Returns
+        -------
+        C : ndarray, shape (n_samples, n_classes)
+            The array of calibrated probabilities of classification according to each
+            class.
         """
         p_calibrated = self._calibrate_proba(X)
 
         return np.vstack([1 - p_calibrated, p_calibrated]).T
 
     def predict(self, X):
-        """A reference implementation of a prediction for a classifier.
+        """Predict the target of new samples.
+
+        The predicted class is the class that has the highest probability, and can thus
+        be different from the prediction of the uncalibrated classifier.
 
         Parameters
         ----------
         X : array-like, shape (n_samples, n_features)
-            The input samples.
+            The samples, as accepted by `estimator.predict_proba`.
 
         Returns
         -------
         y : ndarray, shape (n_samples,)
-            The label for each sample is the label with the highest probability.
+            The predicted class.
         """
         calibrated_probs = self.predict_proba(X)
         return self.classes_[np.argmax(calibrated_probs, axis=1)]
