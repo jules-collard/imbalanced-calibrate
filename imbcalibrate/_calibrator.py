@@ -53,6 +53,21 @@ class PriorCalibratedClassifier(MetaEstimatorMixin, ClassifierMixin, BaseEstimat
 
     Examples
     --------
+    >>> from sklearn.datasets import make_classification
+    >>> from sklearn.linear_model import LogisticRegression
+    >>> from imbcalibrate import PriorCalibratedClassifier
+    >>>
+    >>> X, y = make_classification(
+    ...     n_samples=1000, weights=[0.9, 0.1], random_state=0
+    ... )
+    >>> classifier = PriorCalibratedClassifier(
+    ...     estimator=LogisticRegression(class_weight="balanced", random_state=0)
+    ... )
+    >>> classifier.fit(X, y)
+    PriorCalibratedClassifier(...)
+    >>> probabilities = classifier.predict_proba(X[:5])
+    >>> probabilities.shape
+    (5, 2)
     """
 
     # For @_fit_context decorator
