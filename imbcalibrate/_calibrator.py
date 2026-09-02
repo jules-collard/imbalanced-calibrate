@@ -1,7 +1,13 @@
 from warnings import warn
 
 import numpy as np
-from sklearn.base import BaseEstimator, ClassifierMixin, MetaEstimatorMixin, clone, _fit_context
+from sklearn.base import (
+    BaseEstimator,
+    ClassifierMixin,
+    MetaEstimatorMixin,
+    _fit_context,
+    clone,
+)
 from sklearn.linear_model import LogisticRegression
 from sklearn.utils.multiclass import check_classification_targets, type_of_target
 from sklearn.utils.validation import check_is_fitted, validate_data
@@ -20,8 +26,9 @@ class PriorCalibratedClassifier(MetaEstimatorMixin, ClassifierMixin, BaseEstimat
     weight : float, default=None
         The weight to be used for the prior calibration. If None, the weight will be
         inferred from the estimator's `scale_pos_weight` or `class_weight` attributes if
-        available. If the estimator does not have these attributes and weight is None,
-        a warning will be issued and the weight will default to 1.0.
+        available. When provided, weight acts as an override and will be used instead of
+        the estimator's attributes. If the estimator does not have these attributes and
+        weight is `None`, a warning is issued and the weight will default to 1.0.
 
     Attributes
     ----------
@@ -112,8 +119,16 @@ class PriorCalibratedClassifier(MetaEstimatorMixin, ClassifierMixin, BaseEstimat
         self.X_ = X
         self.y_ = y
 
-        # Inherit weight from estimator if it has scale_pos_weight or class_weight attributes
-        if hasattr(self.estimator_, "scale_pos_weight"): # XGBoost and LightGBM
+
+        if self.weight is not None:
+            if self.weight <= 0:
+                raise ValueError(
+                    "The weight must be a positive float. "
+                    f"Got weight={self.weight}."
+                )
+            self.weight_ = self.weight
+        # Inherit weight from estimator if it has scale_pos_weight or class_weight
+        elif hasattr(self.estimator_, "scale_pos_weight"): # XGBoost and LightGBM
             if self.weight is not None:
                 warn(
                     "The provided weight will be ignored since the estimator has "
@@ -140,12 +155,11 @@ class PriorCalibratedClassifier(MetaEstimatorMixin, ClassifierMixin, BaseEstimat
                 n_neg = np.sum(y == self.classes_[0])
                 self.weight_ = n_neg / n_pos if n_pos > 0 else 1.0
         else:
-            self.weight_ = self.weight if self.weight is not None else 1.0
-            if self.weight is None:
-                warn(
-                    "No weight provided and estimator does not have 'scale_pos_weight' "
-                    "or 'class_weight'. Defaulting to weight=1.0."
-                )
+            self.weight_ = 1.0
+            warn(
+                "No weight provided and estimator does not have 'scale_pos_weight' "
+                "or 'class_weight'. Defaulting to weight=1.0."
+            )
 
         self.is_fitted_ = True
 
