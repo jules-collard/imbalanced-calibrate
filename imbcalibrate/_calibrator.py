@@ -56,8 +56,8 @@ class PriorCalibratedClassifier(MetaEstimatorMixin, ClassifierMixin, BaseEstimat
 
     def __init__(
         self,
-        estimator: ClassifierMixin | None=None,
-        weight: float | None=None
+        estimator: ClassifierMixin | None = None,
+        weight: float | None = None,
     ):
         self.estimator = estimator
         self.weight = weight
