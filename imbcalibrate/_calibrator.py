@@ -9,7 +9,7 @@ from sklearn.utils.validation import check_is_fitted, validate_data
 
 class PriorCalibratedClassifier(MetaEstimatorMixin, ClassifierMixin, BaseEstimator):
     """A meta-estimator which analytically calibrates the output of a binary classifier
-    to account for class balancing techniques..
+    to account for class balancing techniques.
 
     Parameters
     ----------
