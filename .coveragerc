@@ -2,5 +2,5 @@
 
 [run]
 branch = True
-source = imbalanced-calibrate
-include = */imbalanced-calibrate/*
+source = imbcalibrate
+include = */imbcalibrate/*
