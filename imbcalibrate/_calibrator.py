@@ -7,6 +7,7 @@ from sklearn.base import (
     MetaEstimatorMixin,
     _fit_context,
     clone,
+    is_classifier,
 )
 from sklearn.linear_model import LogisticRegression
 from sklearn.utils.multiclass import check_classification_targets, type_of_target
@@ -63,7 +64,7 @@ class PriorCalibratedClassifier(MetaEstimatorMixin, ClassifierMixin, BaseEstimat
     >>> classifier = PriorCalibratedClassifier(
     ...     estimator=LogisticRegression(class_weight="balanced", random_state=0)
     ... )
-    >>> classifier.fit(X, y)
+    >>> classifier.fit(X, y) # doctest: +ELLIPSIS
     PriorCalibratedClassifier(...)
     >>> probabilities = classifier.predict_proba(X[:5])
     >>> probabilities.shape
@@ -133,6 +134,13 @@ class PriorCalibratedClassifier(MetaEstimatorMixin, ClassifierMixin, BaseEstimat
             self.estimator_ = LogisticRegression()
         else:
             self.estimator_ = clone(self.estimator)
+
+        if not is_classifier(self.estimator_):
+            raise ValueError(
+                f"The base estimator should be a classifier. "
+                f"Passed {type(self.estimator).__name__} instead."
+            )
+
         self.estimator_.fit(X, y, **fit_params)
         self.classes_ = self.estimator_.classes_
         self.X_ = X
