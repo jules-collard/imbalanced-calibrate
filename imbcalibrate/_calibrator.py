@@ -10,6 +10,7 @@ from sklearn.base import (
     is_classifier,
 )
 from sklearn.linear_model import LogisticRegression
+from sklearn.pipeline import Pipeline
 from sklearn.utils.multiclass import check_classification_targets, type_of_target
 from sklearn.utils.validation import check_is_fitted, validate_data
 
@@ -23,6 +24,8 @@ class PriorCalibratedClassifier(MetaEstimatorMixin, ClassifierMixin, BaseEstimat
     estimator : estimator instance, default=None
         The classifier whose output need to be calibrated to provide more accurate
         `predict_proba` outputs. The default classifier is a `LogisticRegression`.
+        If estimator is a `Pipeline`, the last step of the pipeline must be a
+        classifier.
 
     weight : float, default=None
         The weight to be used for the prior calibration. If None, the weight will be
@@ -73,13 +76,13 @@ class PriorCalibratedClassifier(MetaEstimatorMixin, ClassifierMixin, BaseEstimat
 
     # For @_fit_context decorator
     _parameter_constraints = {
-        "estimator": [ClassifierMixin, None],
+        "estimator": [ClassifierMixin, Pipeline, None],
         "weight": [float, None],
     }
 
     def __init__(
         self,
-        estimator: ClassifierMixin | None = None,
+        estimator: ClassifierMixin | Pipeline | None = None,
         weight: float | None = None,
     ):
         self.estimator = estimator
