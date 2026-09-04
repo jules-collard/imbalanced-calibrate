@@ -19,6 +19,11 @@ jobs:
     steps:
       - uses: actions/checkout@v7
 
+      - name: Install OpenMP runtime (macOS only)
+        if: runner.os == 'macOS'
+        run: |
+          brew install libomp
+
       - name: Set up Python
         uses: actions/setup-python@v7
         with:
