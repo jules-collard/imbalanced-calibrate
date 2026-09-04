@@ -60,13 +60,11 @@ def test_non_classifier_estimator_is_rejected(binary_data):
 def test_fit_parameters_are_forwarded(binary_data):
     X, y = binary_data
     sample_weight = np.array([1.0, 2.0, 3.0, 4.0])
-    clf = PriorCalibratedClassifier(
-        estimator=FitParameterClassifier(), weight=1.0
-    ).fit(X, y, sample_weight=sample_weight)
-
-    np.testing.assert_array_equal(
-        clf.estimator_.received_sample_weight_, sample_weight
+    clf = PriorCalibratedClassifier(estimator=FitParameterClassifier(), weight=1.0).fit(
+        X, y, sample_weight=sample_weight
     )
+
+    np.testing.assert_array_equal(clf.estimator_.received_sample_weight_, sample_weight)
 
 
 def test_original_estimator_is_cloned(binary_data):

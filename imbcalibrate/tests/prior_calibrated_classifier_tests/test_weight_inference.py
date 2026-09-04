@@ -12,14 +12,15 @@ from imbcalibrate import PriorCalibratedClassifier
 def imbalanced_data():
     # 90 zeros, 10 ones
     X = np.random.rand(100, 5)
-    y = np.array([0]*90 + [1]*10)
+    y = np.array([0] * 90 + [1] * 10)
     return X, y
+
 
 def test_infer_sklearn_class_weight_dict(imbalanced_data):
     X, y = imbalanced_data
     clf = PriorCalibratedClassifier(
         estimator=RandomForestClassifier(class_weight={0: 1, 1: 5}, random_state=42),
-        weight=None
+        weight=None,
     )
     clf.fit(X, y)
 
@@ -36,19 +37,18 @@ def test_infer_class_weight_dict_defaults_and_zero_denominator(
 ):
     X, y = imbalanced_data
     clf = PriorCalibratedClassifier(
-        estimator=RandomForestClassifier(
-            class_weight=class_weight, random_state=42
-        )
+        estimator=RandomForestClassifier(class_weight=class_weight, random_state=42)
     )
     clf.fit(X, y)
 
     assert clf.weight_ == pytest.approx(expected_weight)
 
+
 def test_infer_sklearn_class_weight_balanced(imbalanced_data):
     X, y = imbalanced_data
     clf = PriorCalibratedClassifier(
         estimator=LogisticRegression(class_weight="balanced", random_state=42),
-        weight=None
+        weight=None,
     )
     clf.fit(X, y)
 
@@ -58,31 +58,31 @@ def test_infer_sklearn_class_weight_balanced(imbalanced_data):
     # Effective relative weight = w_1 / w_0 = 5.0 / (100/180) = 9.0
     assert clf.weight_ == pytest.approx(9.0)
 
+
 def test_infer_xgboost_scale_pos_weight(imbalanced_data):
     X, y = imbalanced_data
     clf = PriorCalibratedClassifier(
-        estimator=XGBClassifier(scale_pos_weight=3.5, random_state=42),
-        weight=None
+        estimator=XGBClassifier(scale_pos_weight=3.5, random_state=42), weight=None
     )
     clf.fit(X, y)
 
     assert clf.weight_ == pytest.approx(3.5)
 
+
 def test_infer_lightgbm_scale_pos_weight(imbalanced_data):
     X, y = imbalanced_data
     clf = PriorCalibratedClassifier(
-        estimator=LGBMClassifier(scale_pos_weight=4.0, random_state=42),
-        weight=None
+        estimator=LGBMClassifier(scale_pos_weight=4.0, random_state=42), weight=None
     )
     clf.fit(X, y)
 
     assert clf.weight_ == pytest.approx(4.0)
 
+
 def test_infer_lightgbm_class_weight_balanced(imbalanced_data):
     X, y = imbalanced_data
     clf = PriorCalibratedClassifier(
-        estimator=LGBMClassifier(class_weight="balanced", random_state=42),
-        weight=None
+        estimator=LGBMClassifier(class_weight="balanced", random_state=42), weight=None
     )
     clf.fit(X, y)
 

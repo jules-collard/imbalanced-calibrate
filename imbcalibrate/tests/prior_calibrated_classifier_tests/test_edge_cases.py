@@ -15,8 +15,9 @@ from imbcalibrate import PriorCalibratedClassifier
 @pytest.fixture
 def dummy_data():
     X = np.random.rand(20, 5)
-    y = np.array([0]*15 + [1]*5)
+    y = np.array([0] * 15 + [1] * 5)
     return X, y
+
 
 def test_explicit_weight_overrides_estimator(dummy_data):
     X, y = dummy_data
@@ -29,17 +30,21 @@ def test_explicit_weight_overrides_estimator(dummy_data):
     # Explicit weight should win
     assert clf.weight_ == pytest.approx(2.0)
 
+
 def test_explicit_weight_overrides_pipeline_sampler(dummy_data):
     X, y = dummy_data
-    pipe = ImblearnPipeline([
-        ('rus', RandomUnderSampler(sampling_strategy="majority", random_state=42)),
-        ('clf', LogisticRegression())
-    ])
+    pipe = ImblearnPipeline(
+        [
+            ("rus", RandomUnderSampler(sampling_strategy="majority", random_state=42)),
+            ("clf", LogisticRegression()),
+        ]
+    )
     # Sampler would normally dictate a weight change, but explicit weight should win
     clf = PriorCalibratedClassifier(estimator=pipe, weight=10.0)
     clf.fit(X, y)
 
     assert clf.weight_ == pytest.approx(10.0)
+
 
 def test_missing_weight_issues_warning(dummy_data):
     X, y = dummy_data
@@ -51,6 +56,7 @@ def test_missing_weight_issues_warning(dummy_data):
         clf.fit(X, y)
 
     assert clf.weight_ == 1.0
+
 
 def test_default_estimator_is_logistic_regression(dummy_data):
     X, y = dummy_data
