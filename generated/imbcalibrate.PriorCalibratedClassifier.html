@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>PriorCalibratedClassifier &#8212; Imbalanced Calibrate 0.1.dev18+g9690ea7c3 documentation</title>
+    <title>PriorCalibratedClassifier &#8212; Imbalanced Calibrate 0.1.dev35+g4203cbc49 documentation</title>
   
   
   
@@ -45,7 +45,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
 
-    <script src="../_static/documentation_options.js?v=345ba646"></script>
+    <script src="../_static/documentation_options.js?v=52797e11"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/sg-tags.js?v=d80f6fa4"></script>
@@ -58,7 +58,7 @@
     <link rel="prev" title="API Reference" href="../api.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="0.1.dev18+g9690ea7c3" />
+  <meta name="docsearch:version" content="0.1.dev35+g4203cbc49" />
   
     
     <script src="../_static/searchtools.js"></script>
@@ -130,8 +130,8 @@
       
     
     
-    <img src="../_static/logo.png" class="logo__image only-light" alt="Imbalanced Calibrate 0.1.dev18+g9690ea7c3 documentation - Home"/>
-    <img src="../_static/logo.png" class="logo__image only-dark pst-js-only" alt="Imbalanced Calibrate 0.1.dev18+g9690ea7c3 documentation - Home"/>
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Imbalanced Calibrate 0.1.dev35+g4203cbc49 documentation - Home"/>
+    <img src="../_static/logo.png" class="logo__image only-dark pst-js-only" alt="Imbalanced Calibrate 0.1.dev35+g4203cbc49 documentation - Home"/>
   
   
 </a></div>
@@ -146,6 +146,13 @@
 <nav>
   <ul class="bd-navbar-elements navbar-nav">
     
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../quick_start.html">
+    Getting started
+  </a>
+</li>
+
+
 <li class="nav-item current active">
   <a class="nav-link nav-internal" href="../api.html">
     API Reference
@@ -254,6 +261,13 @@
 <nav>
   <ul class="bd-navbar-elements navbar-nav">
     
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../quick_start.html">
+    Getting started
+  </a>
+</li>
+
+
 <li class="nav-item current active">
   <a class="nav-link nav-internal" href="../api.html">
     API Reference
@@ -390,18 +404,22 @@
 <h1>PriorCalibratedClassifier<a class="headerlink" href="#priorcalibratedclassifier" title="Link to this heading">#</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="imbcalibrate.PriorCalibratedClassifier">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">imbcalibrate.</span></span><span class="sig-name descname"><span class="pre">PriorCalibratedClassifier</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">estimator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.base.ClassifierMixin.html#sklearn.base.ClassifierMixin" title="(in scikit-learn v1.9)"><span class="pre">ClassifierMixin</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#imbcalibrate.PriorCalibratedClassifier" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">imbcalibrate.</span></span><span class="sig-name descname"><span class="pre">PriorCalibratedClassifier</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">estimator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.base.ClassifierMixin.html#sklearn.base.ClassifierMixin" title="(in scikit-learn v1.9)"><span class="pre">ClassifierMixin</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.pipeline.Pipeline.html#sklearn.pipeline.Pipeline" title="(in scikit-learn v1.9)"><span class="pre">Pipeline</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#imbcalibrate.PriorCalibratedClassifier" title="Link to this definition">#</a></dt>
 <dd><p>A meta-estimator which analytically calibrates the output of a binary classifier
 to account for class balancing techniques.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>estimator</strong><span class="classifier">estimator instance, default=None</span></dt><dd><p>The classifier whose output need to be calibrated to provide more accurate
-<code class="docutils literal notranslate"><span class="pre">predict_proba</span></code> outputs. The default classifier is a <code class="docutils literal notranslate"><span class="pre">LogisticRegression</span></code>.</p>
+<code class="docutils literal notranslate"><span class="pre">predict_proba</span></code> outputs. If estimator is a <code class="docutils literal notranslate"><span class="pre">Pipeline</span></code>, the last step of the
+pipeline must be a classifier. If estimator is an imbalanced-learn <code class="docutils literal notranslate"><span class="pre">Pipeline</span></code>,
+only <code class="docutils literal notranslate"><span class="pre">RandomUnderSampler</span></code> or <code class="docutils literal notranslate"><span class="pre">RandomOverSampler</span></code> are recognised. If
+estimator is None, a default <code class="docutils literal notranslate"><span class="pre">LogisticRegression</span></code> classifier will be used.</p>
 </dd>
 <dt><strong>weight</strong><span class="classifier">float, default=None</span></dt><dd><p>The weight to be used for the prior calibration. If None, the weight will be
 inferred from the estimator’s <code class="docutils literal notranslate"><span class="pre">scale_pos_weight</span></code> or <code class="docutils literal notranslate"><span class="pre">class_weight</span></code> attributes if
-available. When provided, weight acts as an override and will be used instead of
+available, or the resampler’s sampling strategy when applicable.
+When provided, weight acts as an override and will be used instead of
 the estimator’s attributes. If the estimator does not have these attributes and
 weight is <code class="docutils literal notranslate"><span class="pre">None</span></code>, a warning is issued and the weight will default to 1.0.</p>
 </dd>
@@ -410,10 +428,6 @@ weight is <code class="docutils literal notranslate"><span class="pre">None</spa
 <dt class="field-even">Attributes<span class="colon">:</span></dt>
 <dd class="field-even"><dl>
 <dt><strong>estimator_</strong><span class="classifier">estimator instance</span></dt><dd><p>The fitted (uncalibrated) estimator.</p>
-</dd>
-<dt><strong>X_</strong><span class="classifier">ndarray, shape (n_samples, n_features)</span></dt><dd><p>The input passed during <a class="reference internal" href="#imbcalibrate.PriorCalibratedClassifier.fit" title="imbcalibrate.PriorCalibratedClassifier.fit"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fit()</span></code></a>.</p>
-</dd>
-<dt><strong>y_</strong><span class="classifier">ndarray, shape (n_samples,)</span></dt><dd><p>The labels passed during <a class="reference internal" href="#imbcalibrate.PriorCalibratedClassifier.fit" title="imbcalibrate.PriorCalibratedClassifier.fit"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fit()</span></code></a>.</p>
 </dd>
 <dt><strong>classes_</strong><span class="classifier">ndarray, shape (n_classes,)</span></dt><dd><p>The classes seen at <a class="reference internal" href="#imbcalibrate.PriorCalibratedClassifier.fit" title="imbcalibrate.PriorCalibratedClassifier.fit"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fit()</span></code></a>.</p>
 </dd>
@@ -425,6 +439,24 @@ has feature names that are all strings.</p>
 </dl>
 </dd>
 </dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">make_classification</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.linear_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">LogisticRegression</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">imbcalibrate</span><span class="w"> </span><span class="kn">import</span> <span class="n">PriorCalibratedClassifier</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">make_classification</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">n_samples</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="p">[</span><span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">],</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">classifier</span> <span class="o">=</span> <span class="n">PriorCalibratedClassifier</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">estimator</span><span class="o">=</span><span class="n">LogisticRegression</span><span class="p">(</span><span class="n">class_weight</span><span class="o">=</span><span class="s2">"balanced"</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">classifier</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="go">PriorCalibratedClassifier(...)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">probabilities</span> <span class="o">=</span> <span class="n">classifier</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X</span><span class="p">[:</span><span class="mi">5</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">probabilities</span><span class="o">.</span><span class="n">shape</span>
+<span class="go">(5, 2)</span>
+</pre></div>
+</div>
 <p class="rubric">Methods</p>
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table">
 <tbody>
