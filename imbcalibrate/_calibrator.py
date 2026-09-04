@@ -7,7 +7,6 @@ from sklearn.base import (
     MetaEstimatorMixin,
     _fit_context,
     clone,
-    is_classifier,
 )
 from sklearn.linear_model import LogisticRegression
 from sklearn.pipeline import Pipeline
