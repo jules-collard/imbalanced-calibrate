@@ -42,6 +42,7 @@ version_file = "imbcalibrate/_version.py"
 
 [dependency-groups]
 test = [
+  "imbalanced-learn>=0.14.2",
   "lightgbm>=4.7.0",
   "pytest",
   "pytest-cov",

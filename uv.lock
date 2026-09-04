@@ -758,6 +758,7 @@ resampling = [
 [package.dev-dependencies]
 dev = [
     { name = "black" },
+    { name = "imbalanced-learn" },
     { name = "lightgbm" },
     { name = "matplotlib", version = "3.10.9", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.11'" },
     { name = "matplotlib", version = "3.11.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.11'" },
@@ -802,6 +803,7 @@ lint = [
     { name = "ruff" },
 ]
 test = [
+    { name = "imbalanced-learn" },
     { name = "lightgbm" },
     { name = "pytest" },
     { name = "pytest-cov" },
@@ -820,6 +822,7 @@ provides-extras = ["resampling"]
 [package.metadata.requires-dev]
 dev = [
     { name = "black", specifier = "==23.3.0" },
+    { name = "imbalanced-learn", specifier = ">=0.14.2" },
     { name = "lightgbm", specifier = ">=4.7.0" },
     { name = "matplotlib" },
     { name = "numpydoc" },
@@ -851,6 +854,7 @@ lint = [
     { name = "ruff", specifier = ">=0.5.3" },
 ]
 test = [
+    { name = "imbalanced-learn", specifier = ">=0.14.2" },
     { name = "lightgbm", specifier = ">=4.7.0" },
     { name = "pytest" },
     { name = "pytest-cov" },
