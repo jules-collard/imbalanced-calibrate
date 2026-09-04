@@ -42,8 +42,10 @@ version_file = "imbcalibrate/_version.py"
 
 [dependency-groups]
 test = [
+  "lightgbm>=4.7.0",
   "pytest",
   "pytest-cov",
+  "xgboost>=3.2.0",
 ]
 lint = [
   # The version below should be aligned with the one of `.pre-commit-config.yaml`
