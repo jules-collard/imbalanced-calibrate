@@ -4,8 +4,7 @@
 Getting started
 ###############
 
-This package serves as a skeleton package aiding at developing compatible
-scikit-learn contribution.
+This package provides analytical prior calibration utilities to correct probability estimates from binary classifiers trained with class rebalancing techniques.
 
 Prerequisites
 =============
@@ -23,10 +22,10 @@ Additionally, ``imbalanced-calibrate`` requires the following optional dependenc
 Install
 =======
 
-From PyPi
+From PyPI
 ---------
 
-``imbalanced-calibrate`` is currently available on the PyPi’s repositories and you can install it via ``pip``: ::
+``imbalanced-calibrate`` is currently available on the PyPI repository and you can install it via ``pip``: ::
     pip install imbalanced-calibrate
 
 Or with ``uv``: ::
@@ -37,6 +36,6 @@ The optional dependencies for resampling methods can be installed using ``pip in
 Contribute
 ==========
 
-You can contribute to this code through a Pull Request on `GitHub`_. Please, make sure that your code is coming with unit tests to ensure full coverage and continuous integration in the API.
+You can contribute to this package through a Pull Request on `GitHub`_, subject to appropriate unit testing and review.
 
 .. _GitHub: https://github.com/jules-collard/imbalanced-calibrate

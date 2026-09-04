@@ -13,7 +13,8 @@ from imbcalibrate import PriorCalibratedClassifier
 
 @pytest.fixture
 def imbalanced_data():
-    X = np.random.rand(100, 5)
+    rng = np.random.default_rng(0)
+    X = rng.random((100, 5))
     y = np.array([0] * 80 + [1] * 20)
     return X, y
 

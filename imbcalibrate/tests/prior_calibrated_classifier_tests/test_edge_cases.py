@@ -14,7 +14,8 @@ from imbcalibrate import PriorCalibratedClassifier
 
 @pytest.fixture
 def dummy_data():
-    X = np.random.rand(20, 5)
+    rng = np.random.default_rng(0)
+    X = rng.random((20, 5))
     y = np.array([0] * 15 + [1] * 5)
     return X, y
 
