@@ -14,6 +14,15 @@ from sklearn.pipeline import Pipeline
 from sklearn.utils.multiclass import check_classification_targets, type_of_target
 from sklearn.utils.validation import check_is_fitted, validate_data
 
+try:
+    from imblearn.over_sampling import RandomOverSampler
+    from imblearn.pipeline import Pipeline as ImbPipeline
+    from imblearn.under_sampling import RandomUnderSampler
+
+    _IMBLEARN_INSTALLED = True
+except ImportError:
+    _IMBLEARN_INSTALLED = False
+
 
 class PriorCalibratedClassifier(MetaEstimatorMixin, ClassifierMixin, BaseEstimator):
     """A meta-estimator which analytically calibrates the output of a binary classifier
@@ -23,14 +32,16 @@ class PriorCalibratedClassifier(MetaEstimatorMixin, ClassifierMixin, BaseEstimat
     ----------
     estimator : estimator instance, default=None
         The classifier whose output need to be calibrated to provide more accurate
-        `predict_proba` outputs. The default classifier is a `LogisticRegression`.
-        If estimator is a `Pipeline`, the last step of the pipeline must be a
-        classifier.
+        `predict_proba` outputs. If estimator is a `Pipeline`, the last step of the
+        pipeline must be a classifier. If estimator is an imbalanced-learn `Pipeline`,
+        resampler must be either a `RandomUnderSampler` or `RandomOverSampler`. If
+        estimator is None, a default `LogisticRegression` classifier will be used.
 
     weight : float, default=None
         The weight to be used for the prior calibration. If None, the weight will be
         inferred from the estimator's `scale_pos_weight` or `class_weight` attributes if
-        available. When provided, weight acts as an override and will be used instead of
+        available, or the resampler's sampling strategy when applicable.
+        When provided, weight acts as an override and will be used instead of
         the estimator's attributes. If the estimator does not have these attributes and
         weight is `None`, a warning is issued and the weight will default to 1.0.
 
@@ -38,12 +49,6 @@ class PriorCalibratedClassifier(MetaEstimatorMixin, ClassifierMixin, BaseEstimat
     ----------
     estimator_ : estimator instance
         The fitted (uncalibrated) estimator.
-
-    X_ : ndarray, shape (n_samples, n_features)
-        The input passed during :meth:`fit`.
-
-    y_ : ndarray, shape (n_samples,)
-        The labels passed during :meth:`fit`.
 
     classes_ : ndarray, shape (n_classes,)
         The classes seen at :meth:`fit`.
@@ -132,62 +137,101 @@ class PriorCalibratedClassifier(MetaEstimatorMixin, ClassifierMixin, BaseEstimat
                 f"is {y_type}."
             )
 
-        # Fit the estimator
-        if self.estimator is None:
-            self.estimator_ = LogisticRegression()
-        else:
-            self.estimator_ = clone(self.estimator)
-
-        if not is_classifier(self.estimator_):
+        # Estimator validation
+        est = self.estimator if self.estimator is not None else LogisticRegression()
+        if not is_classifier(est):
             raise ValueError(
-                f"The base estimator should be a classifier. "
-                f"Passed {type(self.estimator).__name__} instead."
+                "The base estimator should be a classifier. "
+                f"Passed {type(est).__name__} instead."
             )
 
+        self.estimator_ = clone(est)
         self.estimator_.fit(X, y, **fit_params)
         self.classes_ = self.estimator_.classes_
-        self.X_ = X
-        self.y_ = y
 
-        if self.weight is not None:
-            if self.weight <= 0:
-                raise ValueError(
-                    f"The weight must be a positive float. Got weight={self.weight}."
-                )
-            self.weight_ = self.weight
-        # Inherit weight from estimator if it has scale_pos_weight or class_weight
-        elif hasattr(self.estimator_, "scale_pos_weight"):  # XGBoost and LightGBM
-            if self.weight is not None:
-                warn(
-                    "The provided weight will be ignored since the estimator has "
-                    "'scale_pos_weight' attribute."
-                )
-            self.weight_ = self.estimator_.scale_pos_weight
-        elif hasattr(self.estimator_, "class_weight"):  # Sklearn Logistic Regression
-            if self.weight is not None:
-                warn(
-                    "The provided weight will be ignored since the estimator has "
-                    "'class_weight' attribute."
-                )
-            cw = self.estimator_.class_weight
+        # ==========================================
+        # Weight Resolution Logic
+        # ==========================================
+
+        sampler = None
+        final_est = None
+        inferred_weight = None
+
+        # Extract classifier and/or sampler from pipeline if applicable
+        if isinstance(self.estimator_, Pipeline):
+            final_est = self.estimator_.steps[-1][1]
+            if _IMBLEARN_INSTALLED and isinstance(self.estimator_, ImbPipeline):
+                for _, step in self.estimator_.steps:
+                    if isinstance(step, (RandomUnderSampler, RandomOverSampler)):
+                        sampler: RandomUnderSampler | RandomOverSampler = step
+                        break
+                if sampler is None:
+                    warn(
+                        "Imbalanced-learn pipeline detected but sampler not found."
+                        "Weight inference may be inaccurate."
+                    )
+        else:
+            final_est = self.estimator_
+
+        if sampler is not None:
+            # Original counts
+            n_pos = np.sum(y == self.classes_[1])
+            n_neg = np.sum(y == self.classes_[0])
+
+            # Fallback to original count if class wasn't touched by sampler
+            resampled_counts: dict = sampler.sampling_strategy_
+            n_pos_resampled = resampled_counts.get(self.classes_[1], n_pos)
+            n_neg_resampled = resampled_counts.get(self.classes_[0], n_neg)
+
+            if any(
+                [n_pos_resampled == 0, n_neg_resampled == 0, n_pos == 0, n_neg == 0]
+            ):
+                raise ValueError("Zero samples encountered for a class.")
+
+            inferred_weight = (n_neg / n_pos) * (n_pos_resampled / n_neg_resampled)
+
+        elif hasattr(final_est, "scale_pos_weight"):  # XGBoost and LightGBM
+            inferred_weight = final_est.scale_pos_weight
+
+        elif hasattr(final_est, "class_weight"):  # Sklearn classifiers
+            cw = final_est.class_weight
             if cw is None:
-                self.weight_ = 1.0
+                inferred_weight = 1.0
             elif isinstance(cw, dict):
                 # Calculate ratio: weight of class 1 / weight of class 0
                 weight_0 = cw.get(self.classes_[0], 1.0)
                 weight_1 = cw.get(self.classes_[1], 1.0)
-                self.weight_ = weight_1 / weight_0 if weight_0 != 0 else 1.0
+                inferred_weight = weight_1 / weight_0 if weight_0 != 0 else 1.0
             elif cw == "balanced":
                 # Calculate ratio based on actual sample counts in 'y'
                 n_pos = np.sum(y == self.classes_[1])
                 n_neg = np.sum(y == self.classes_[0])
-                self.weight_ = n_neg / n_pos if n_pos > 0 else 1.0
-        else:
-            self.weight_ = 1.0
-            warn(
-                "No weight provided and estimator does not have 'scale_pos_weight' "
-                "or 'class_weight'. Defaulting to weight=1.0."
-            )
+                inferred_weight = n_neg / n_pos if n_pos > 0 else 1.0
+
+        # ==========================================
+        # Overrides and Warnings
+        # ==========================================
+
+        if self.weight is not None:  # override with provided weight
+            if self.weight <= 0:
+                raise ValueError(
+                    f"The weight must be a positive float. Got weight={self.weight}."
+                )
+            if inferred_weight is not None:
+                warn(
+                    f"Weight parameter override: Using provided weight={self.weight} "
+                    f"instead of inferred weight={inferred_weight}."
+                )
+            self.weight_ = self.weight
+        else:  # use inferred weight if available, else default to 1.0
+            if inferred_weight is not None:
+                self.weight_ = inferred_weight
+            else:
+                warn(
+                    "No weight provided and could not infer weight from the estimator."
+                    "Defaulting to weight=1.0."
+                )
+                self.weight_ = 1.0
 
         self.is_fitted_ = True
 

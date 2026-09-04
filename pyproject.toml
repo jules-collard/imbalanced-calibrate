@@ -32,6 +32,11 @@ classifiers = [
 Homepage = "https://github.com/jules-collard/imbalanced-calibrate"
 Issues = "https://github.com/jules-collard/imbalanced-calibrate/issues"
 
+[project.optional-dependencies]
+resampling = [
+    "imbalanced-learn>=0.14.2",
+]
+
 [tool.setuptools_scm]
 version_file = "imbcalibrate/_version.py"
 
