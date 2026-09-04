@@ -14,6 +14,7 @@ from sklearn.utils.multiclass import check_classification_targets, type_of_targe
 from sklearn.utils.validation import check_is_fitted, validate_data
 
 try:
+    from imblearn.base import BaseSampler
     from imblearn.over_sampling import RandomOverSampler
     from imblearn.pipeline import Pipeline as ImbPipeline
     from imblearn.under_sampling import RandomUnderSampler
@@ -157,6 +158,12 @@ class PriorCalibratedClassifier(MetaEstimatorMixin, ClassifierMixin, BaseEstimat
                     if isinstance(step, (RandomUnderSampler, RandomOverSampler)):
                         sampler: RandomUnderSampler | RandomOverSampler = step
                         break
+                    elif isinstance(step, BaseSampler):
+                        raise NotImplementedError(
+                            f"Sampler {type(step).__name__} is not supported. "
+                            "Only RandomUnderSampler and RandomOverSampler are "
+                            "supported."
+                        )
                 if sampler is None:
                     warn(
                         "Imbalanced-learn pipeline detected but sampler not "
