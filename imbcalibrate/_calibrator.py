@@ -137,14 +137,7 @@ class PriorCalibratedClassifier(MetaEstimatorMixin, ClassifierMixin, BaseEstimat
                 f"is {y_type}."
             )
 
-        # Estimator validation
         est = self.estimator if self.estimator is not None else LogisticRegression()
-        if not is_classifier(est):
-            raise ValueError(
-                "The base estimator should be a classifier. "
-                f"Passed {type(est).__name__} instead."
-            )
-
         self.estimator_ = clone(est)
         self.estimator_.fit(X, y, **fit_params)
         self.classes_ = self.estimator_.classes_
