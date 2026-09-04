@@ -1,7 +1,10 @@
+import warnings
+
 import numpy as np
 import pytest
 from imblearn.pipeline import Pipeline as ImblearnPipeline
 from imblearn.under_sampling import RandomUnderSampler
+from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
 from sklearn.naive_bayes import GaussianNB
 from xgboost import XGBClassifier
@@ -56,3 +59,39 @@ def test_default_estimator_is_logistic_regression(dummy_data):
 
     # Should instantiate a LogisticRegression internally
     assert isinstance(clf.estimator_, LogisticRegression)
+
+
+@pytest.mark.parametrize("weight", [0.0, -1.0])
+def test_non_positive_weight_is_rejected(dummy_data, weight):
+    X, y = dummy_data
+    clf = PriorCalibratedClassifier(weight=weight)
+
+    with pytest.raises(ValueError, match="must be a positive float"):
+        clf.fit(X, y)
+
+
+def test_class_weight_none_infers_one_without_warning(dummy_data):
+    X, y = dummy_data
+    clf = PriorCalibratedClassifier(
+        estimator=RandomForestClassifier(class_weight=None, random_state=42)
+    )
+
+    with warnings.catch_warnings(record=True) as recorded:
+        warnings.simplefilter("always")
+        clf.fit(X, y)
+
+    assert clf.weight_ == pytest.approx(1.0)
+    assert len(recorded) == 0
+
+
+def test_scale_pos_weight_takes_precedence_over_class_weight(dummy_data):
+    X, y = dummy_data
+    estimator = XGBClassifier(
+        scale_pos_weight=3.0,
+        class_weight={0: 1.0, 1: 7.0},
+        random_state=42,
+    )
+    clf = PriorCalibratedClassifier(estimator=estimator)
+    clf.fit(X, y)
+
+    assert clf.weight_ == pytest.approx(3.0)

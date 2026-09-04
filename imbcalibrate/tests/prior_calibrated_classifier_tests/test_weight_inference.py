@@ -26,6 +26,24 @@ def test_infer_sklearn_class_weight_dict(imbalanced_data):
     # Check that weight is correctly inferred as 5.0 / 1.0 = 5.0
     assert clf.weight_ == pytest.approx(5.0)
 
+
+@pytest.mark.parametrize(
+    "class_weight, expected_weight",
+    [({1: 5}, 5.0), ({0: 2}, 0.5), ({0: 0, 1: 5}, 1.0)],
+)
+def test_infer_class_weight_dict_defaults_and_zero_denominator(
+    imbalanced_data, class_weight, expected_weight
+):
+    X, y = imbalanced_data
+    clf = PriorCalibratedClassifier(
+        estimator=RandomForestClassifier(
+            class_weight=class_weight, random_state=42
+        )
+    )
+    clf.fit(X, y)
+
+    assert clf.weight_ == pytest.approx(expected_weight)
+
 def test_infer_sklearn_class_weight_balanced(imbalanced_data):
     X, y = imbalanced_data
     clf = PriorCalibratedClassifier(

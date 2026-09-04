@@ -68,3 +68,21 @@ def test_predict_threshold_shift(dummy_X_y):
 
     preds = clf.predict(X)
     np.testing.assert_array_equal(preds, np.array([0, 0]))
+
+
+@pytest.mark.parametrize("positive_probability", [0.0, 1.0])
+def test_calibration_handles_probability_boundaries(dummy_X_y, positive_probability):
+    X, y = dummy_X_y
+    mock_clf = MockClassifier(
+        probas=[1.0 - positive_probability, positive_probability]
+    )
+    clf = PriorCalibratedClassifier(estimator=mock_clf, weight=4.0)
+    clf.fit(X, y)
+
+    probas = clf.predict_proba(X)
+
+    assert np.all(np.isfinite(probas))
+    np.testing.assert_allclose(probas.sum(axis=1), 1.0)
+    np.testing.assert_allclose(
+        probas[:, 1], np.full(len(X), positive_probability)
+    )

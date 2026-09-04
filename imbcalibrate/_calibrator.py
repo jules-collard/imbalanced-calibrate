@@ -180,11 +180,13 @@ class PriorCalibratedClassifier(MetaEstimatorMixin, ClassifierMixin, BaseEstimat
 
             # Fallback to original count if class wasn't touched by sampler
             resampled_counts: dict = sampler.sampling_strategy_
-            n_pos_resampled = resampled_counts.get(self.classes_[1], n_pos)
-            # Oversampling strategy dict gives number of additional samples, not total
             if isinstance(sampler, RandomOverSampler):
-                n_pos_resampled += n_pos
-            n_neg_resampled = resampled_counts.get(self.classes_[0], n_neg)
+                # Oversampling strategy dict gives additional samples per class.
+                n_pos_resampled = n_pos + resampled_counts.get(self.classes_[1], 0)
+                n_neg_resampled = n_neg + resampled_counts.get(self.classes_[0], 0)
+            else:
+                n_pos_resampled = resampled_counts.get(self.classes_[1], n_pos)
+                n_neg_resampled = resampled_counts.get(self.classes_[0], n_neg)
 
             if any(
                 [n_pos_resampled == 0, n_neg_resampled == 0, n_pos == 0, n_neg == 0]

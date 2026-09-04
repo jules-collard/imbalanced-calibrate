@@ -61,6 +61,20 @@ def test_imblearn_pipeline_random_over_sampler(imbalanced_data):
 
     assert clf.weight_ == pytest.approx(4.0)
 
+
+def test_imblearn_pipeline_random_over_sampler_negative_class(imbalanced_data):
+    X, y = imbalanced_data
+    # Explicitly oversample class 0 from 80 to 160 samples.
+    pipe = ImblearnPipeline([
+        ("ros", RandomOverSampler(sampling_strategy={0: 160}, random_state=42)),
+        ("clf", LogisticRegression()),
+    ])
+    clf = PriorCalibratedClassifier(estimator=pipe, weight=None)
+    clf.fit(X, y)
+
+    # Original ratio N_0/N_1 = 80/20; resampled ratio N_0/N_1 = 160/20.
+    assert clf.weight_ == pytest.approx(0.5)
+
 def test_unsupported_imblearn_resampler(imbalanced_data):
     X, y = imbalanced_data
     # SMOTE is not RandomOverSampler or RandomUnderSampler
