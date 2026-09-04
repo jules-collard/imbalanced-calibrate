@@ -34,7 +34,7 @@ class PriorCalibratedClassifier(MetaEstimatorMixin, ClassifierMixin, BaseEstimat
         The classifier whose output need to be calibrated to provide more accurate
         `predict_proba` outputs. If estimator is a `Pipeline`, the last step of the
         pipeline must be a classifier. If estimator is an imbalanced-learn `Pipeline`,
-        resampler must be either a `RandomUnderSampler` or `RandomOverSampler`. If
+        only `RandomUnderSampler` or `RandomOverSampler` are recognised. If
         estimator is None, a default `LogisticRegression` classifier will be used.
 
     weight : float, default=None
@@ -167,8 +167,8 @@ class PriorCalibratedClassifier(MetaEstimatorMixin, ClassifierMixin, BaseEstimat
                         break
                 if sampler is None:
                     warn(
-                        "Imbalanced-learn pipeline detected but sampler not found."
-                        "Weight inference may be inaccurate."
+                        "Imbalanced-learn pipeline detected but sampler not "
+                        "found/supported."
                     )
         else:
             final_est = self.estimator_
@@ -181,6 +181,9 @@ class PriorCalibratedClassifier(MetaEstimatorMixin, ClassifierMixin, BaseEstimat
             # Fallback to original count if class wasn't touched by sampler
             resampled_counts: dict = sampler.sampling_strategy_
             n_pos_resampled = resampled_counts.get(self.classes_[1], n_pos)
+            # Oversampling strategy dict gives number of additional samples, not total
+            if isinstance(sampler, RandomOverSampler):
+                n_pos_resampled += n_pos
             n_neg_resampled = resampled_counts.get(self.classes_[0], n_neg)
 
             if any(
@@ -228,7 +231,7 @@ class PriorCalibratedClassifier(MetaEstimatorMixin, ClassifierMixin, BaseEstimat
                 self.weight_ = inferred_weight
             else:
                 warn(
-                    "No weight provided and could not infer weight from the estimator."
+                    "No weight provided and could not infer weight from the estimator. "
                     "Defaulting to weight=1.0."
                 )
                 self.weight_ = 1.0
