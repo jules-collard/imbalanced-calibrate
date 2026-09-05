@@ -10,8 +10,10 @@ imbalanced-calibrate documentation
 `Source Repository <https://github.com/jules-collard/imbalanced-calibrate>`__ |
 `Issues & Ideas <https://github.com/jules-collard/imbalanced-calibrate/issues>`__ |
 
-Imbalanced-calibrate (imported as `imbcalibrate`) is an open-source library relying on scikit-learn (imported as `sklearn`) and imbalanced-learn (imported as `imblearn`), providing wrapper estimators to analytically correct for bias induced by imbalanced learning methods.
+Imbalanced-calibrate (imported as `imbcalibrate`) provides `scikit-learn`_ -compatible calibration methods
+which correct probability estimates for the bias introduced by imbalanced learning techniques.
 
+.. _scikit-learn: https://scikit-learn.org/stable/
 
 .. grid:: 1 2 2 2
     :gutter: 4
@@ -23,7 +25,7 @@ Imbalanced-calibrate (imported as `imbcalibrate`) is an open-source library rely
         :class-card: intro-card
         :shadow: md
 
-        Information regarding this template and how to modify it for your own project.
+        Dependencies, installation instructions & contribution guide.
 
         +++
 
@@ -40,8 +42,8 @@ Imbalanced-calibrate (imported as `imbcalibrate`) is an open-source library rely
         :class-card: intro-card
         :shadow: md
 
-        An example of narrative documentation. Here, we will explain how to create your
-        own `scikit-learn` estimator.
+        The user guide explains why imbalanced learning methods require calibration, and how to
+        easily apply these methods using `imbalanced-calibrate`.
 
         +++
 
@@ -58,8 +60,7 @@ Imbalanced-calibrate (imported as `imbcalibrate`) is an open-source library rely
         :class-card: intro-card
         :shadow: md
 
-        An example of API documentation. This is an example how to use `sphinx` to
-        automatically generate reference API page.
+        Detailed description of the `imbalanced-calibrate` API.
 
         +++
 
@@ -76,8 +77,7 @@ Imbalanced-calibrate (imported as `imbcalibrate`) is an open-source library rely
         :class-card: intro-card
         :shadow: md
 
-        A set of examples. It complements the User Guide and it is the right place to
-        show how to use your compatible estimator.
+        A set of examples.
 
         +++
 
