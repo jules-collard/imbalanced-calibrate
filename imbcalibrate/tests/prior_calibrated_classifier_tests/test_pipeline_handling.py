@@ -87,16 +87,13 @@ def test_imblearn_pipeline_random_over_sampler_negative_class(imbalanced_data):
 
 def test_unsupported_imblearn_resampler(imbalanced_data):
     X, y = imbalanced_data
-    # SMOTE is not RandomOverSampler or RandomUnderSampler
     pipe = ImblearnPipeline(
         [("smote", SMOTE(random_state=42)), ("clf", LogisticRegression())]
     )
     clf = PriorCalibratedClassifier(estimator=pipe, weight=None)
 
-    with pytest.warns(
-        UserWarning,
-        match="Imbalanced-learn pipeline detected but sampler not found/supported.",
+    with pytest.raises(
+        NotImplementedError,
+        match=r"Only RandomUnderSampler and RandomOverSampler are supported\.",
     ):
         clf.fit(X, y)
-
-    assert clf.weight_ == 1.0

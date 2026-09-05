@@ -7,7 +7,6 @@ from sklearn.base import (
     MetaEstimatorMixin,
     _fit_context,
     clone,
-    is_classifier,
 )
 from sklearn.linear_model import LogisticRegression
 from sklearn.pipeline import Pipeline
@@ -15,6 +14,7 @@ from sklearn.utils.multiclass import check_classification_targets, type_of_targe
 from sklearn.utils.validation import check_is_fitted, validate_data
 
 try:
+    from imblearn.base import BaseSampler
     from imblearn.over_sampling import RandomOverSampler
     from imblearn.pipeline import Pipeline as ImbPipeline
     from imblearn.under_sampling import RandomUnderSampler
@@ -137,14 +137,7 @@ class PriorCalibratedClassifier(MetaEstimatorMixin, ClassifierMixin, BaseEstimat
                 f"is {y_type}."
             )
 
-        # Estimator validation
         est = self.estimator if self.estimator is not None else LogisticRegression()
-        if not is_classifier(est):
-            raise ValueError(
-                "The base estimator should be a classifier. "
-                f"Passed {type(est).__name__} instead."
-            )
-
         self.estimator_ = clone(est)
         self.estimator_.fit(X, y, **fit_params)
         self.classes_ = self.estimator_.classes_
@@ -165,6 +158,12 @@ class PriorCalibratedClassifier(MetaEstimatorMixin, ClassifierMixin, BaseEstimat
                     if isinstance(step, (RandomUnderSampler, RandomOverSampler)):
                         sampler: RandomUnderSampler | RandomOverSampler = step
                         break
+                    elif isinstance(step, BaseSampler):
+                        raise NotImplementedError(
+                            f"Sampler {type(step).__name__} is not supported. "
+                            "Only RandomUnderSampler and RandomOverSampler are "
+                            "supported."
+                        )
                 if sampler is None:
                     warn(
                         "Imbalanced-learn pipeline detected but sampler not "
