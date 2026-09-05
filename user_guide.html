@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>User guide : contents &#8212; Imbalanced Calibrate 0.1.dev48+g881d7f2a4 documentation</title>
+    <title>User guide : contents &#8212; Imbalanced Calibrate 0.1.0 documentation</title>
   
   
   
@@ -45,7 +45,7 @@
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
 
-    <script src="_static/documentation_options.js?v=e5bae8f3"></script>
+    <script src="_static/documentation_options.js?v=01f34227"></script>
     <script src="_static/doctools.js?v=fd6eb6e6"></script>
     <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="_static/sg-tags.js?v=d80f6fa4"></script>
@@ -59,7 +59,7 @@
     <link rel="prev" title="Getting started" href="quick_start.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="0.1.dev48+g881d7f2a4" />
+  <meta name="docsearch:version" content="0.1.0" />
   
     
     <script src="_static/searchtools.js"></script>
@@ -131,8 +131,8 @@
       
     
     
-    <img src="_static/logo.png" class="logo__image only-light" alt="Imbalanced Calibrate 0.1.dev48+g881d7f2a4 documentation - Home"/>
-    <img src="_static/logo.png" class="logo__image only-dark pst-js-only" alt="Imbalanced Calibrate 0.1.dev48+g881d7f2a4 documentation - Home"/>
+    <img src="_static/logo.png" class="logo__image only-light" alt="Imbalanced Calibrate 0.1.0 documentation - Home"/>
+    <img src="_static/logo.png" class="logo__image only-dark pst-js-only" alt="Imbalanced Calibrate 0.1.0 documentation - Home"/>
   
   
 </a></div>
@@ -422,8 +422,8 @@ Although this correction is well-documented in the literature, confusion can ari
 notation and parameterisations. Manually applying the correction reduces reproducibility and can create
 confusion, for example when saving or sharing a model object. Furthermore, for some parameterisations
 (such as <code class="docutils literal notranslate"><span class="pre">sklearn</span></code>’s <code class="docutils literal notranslate"><span class="pre">class_weight</span></code>), the correction is a function of both the training data and
-parameter value.</p>
-<p>To address this issue, this library provides the <code class="xref py py-class docutils literal notranslate"><span class="pre">PriorCalibratedClassifier</span></code> class, which acts
+parameter value, creating an additional potential source of error.</p>
+<p>To address this issue, <code class="docutils literal notranslate"><span class="pre">imbalanced-calibrate</span></code> provides the <code class="xref py py-class docutils literal notranslate"><span class="pre">PriorCalibratedClassifier</span></code> class, which acts
 as a calibration wrapper (similar to <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.calibration.CalibratedClassifierCV.html#sklearn.calibration.CalibratedClassifierCV" title="(in scikit-learn v1.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">sklearn.calibration.CalibratedClassifierCV</span></code></a>) around any
 <code class="docutils literal notranslate"><span class="pre">sklearn</span></code>-compatible binary classifier. In particular, the implementation automatically calculates the
 correct correction by inspecting the sub-estimator’s (or <code class="docutils literal notranslate"><span class="pre">imbalanced-learn</span></code> resampler’s) parameters.</p>
@@ -536,6 +536,13 @@ data distribution.</p>
 p &amp;= \frac{\frac{p_w}{w(1-p_w)}}{1 + \frac{p_w}{w(1-p_w)}} \\
 &amp;= \frac{p_w}{w(1-p_w) + p_w}\end{split}\]</div>
 </section>
+<section id="references-further-reading">
+<h3>References &amp; Further Reading<a class="headerlink" href="#references-further-reading" title="Link to this heading">#</a></h3>
+<p>Caplin, A., Martin, D., and Marx, P. (2022). Calibrating for Class Weights by Modeling Machine Learning. arXiv:2205.04613 [cs.LG].</p>
+<p>Chawla, N. V., Japkowicz, N., and Kotcz, A. (2004). Editorial: special issue on learning from imbalanced data sets. SIGKDD Explor. Newsl., 6(1):1–6.</p>
+<p>Elkan, C. (2001). The foundations of cost-sensitive learning. In Proceedings of the 17th international joint conference on Artificial intelligence - Volume 2, IJCAI’01, pages 973–978, San Francisco, CA, USA. Morgan Kaufmann Publishers Inc.</p>
+<p>He, H. and Ma, Y. (2013). Imbalanced learning : foundations, algorithms, and applications. Wiley, Hoboken, NJ.</p>
+</section>
 </section>
 </section>
 
@@ -600,6 +607,7 @@ p &amp;= \frac{\frac{p_w}{w(1-p_w)}}{1 + \frac{p_w}{w(1-p_w)}} \\
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#applying-the-correction">Applying the Correction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#references-further-reading">References &amp; Further Reading</a></li>
 </ul>
 </li>
 </ul>

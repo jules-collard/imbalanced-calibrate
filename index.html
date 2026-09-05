@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>imbalanced-calibrate documentation &#8212; Imbalanced Calibrate 0.1.dev48+g881d7f2a4 documentation</title>
+    <title>imbalanced-calibrate documentation &#8212; Imbalanced Calibrate 0.1.0 documentation</title>
   
   
   
@@ -45,7 +45,7 @@
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
 
-    <script src="_static/documentation_options.js?v=e5bae8f3"></script>
+    <script src="_static/documentation_options.js?v=01f34227"></script>
     <script src="_static/doctools.js?v=fd6eb6e6"></script>
     <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="_static/sg-tags.js?v=d80f6fa4"></script>
@@ -57,7 +57,7 @@
     <link rel="next" title="Getting started" href="quick_start.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="0.1.dev48+g881d7f2a4" />
+  <meta name="docsearch:version" content="0.1.0" />
   
     
     <script src="_static/searchtools.js"></script>
@@ -129,8 +129,8 @@
       
     
     
-    <img src="_static/logo.png" class="logo__image only-light" alt="Imbalanced Calibrate 0.1.dev48+g881d7f2a4 documentation - Home"/>
-    <img src="_static/logo.png" class="logo__image only-dark pst-js-only" alt="Imbalanced Calibrate 0.1.dev48+g881d7f2a4 documentation - Home"/>
+    <img src="_static/logo.png" class="logo__image only-light" alt="Imbalanced Calibrate 0.1.0 documentation - Home"/>
+    <img src="_static/logo.png" class="logo__image only-dark pst-js-only" alt="Imbalanced Calibrate 0.1.0 documentation - Home"/>
   
   
 </a></div>
@@ -370,11 +370,12 @@
                   
   <section id="imbalanced-calibrate-documentation">
 <h1>imbalanced-calibrate documentation<a class="headerlink" href="#imbalanced-calibrate-documentation" title="Link to this heading">#</a></h1>
-<p><strong>Date</strong>: Sep 05, 2026 <strong>Version</strong>: 0.1.dev48+g881d7f2a4</p>
+<p><strong>Date</strong>: Sep 05, 2026 <strong>Version</strong>: 0.1.0</p>
 <p><strong>Useful links</strong>:
 <a class="reference external" href="https://github.com/jules-collard/imbalanced-calibrate">Source Repository</a> |
 <a class="reference external" href="https://github.com/jules-collard/imbalanced-calibrate/issues">Issues &amp; Ideas</a> |</p>
-<p>Imbalanced-calibrate (imported as <code class="docutils literal notranslate"><span class="pre">imbcalibrate</span></code>) is an open-source library relying on scikit-learn (imported as <code class="docutils literal notranslate"><span class="pre">sklearn</span></code>) and imbalanced-learn (imported as <code class="docutils literal notranslate"><span class="pre">imblearn</span></code>), providing wrapper estimators to analytically correct for bias induced by imbalanced learning methods.</p>
+<p>Imbalanced-calibrate (imported as <code class="docutils literal notranslate"><span class="pre">imbcalibrate</span></code>) provides <a class="reference external" href="https://scikit-learn.org/stable/">scikit-learn</a> -compatible calibration methods
+which correct probability estimates for the bias introduced by imbalanced learning techniques.</p>
 <div class="sd-container-fluid sd-sphinx-override sd-mb-4 sd-pt-2 sd-pb-2 sd-pl-0 sd-pr-0 sd-text-center docutils">
 <div class="sd-row sd-row-cols-1 sd-row-cols-xs-1 sd-row-cols-sm-2 sd-row-cols-md-2 sd-row-cols-lg-2 sd-g-4 sd-g-xs-4 sd-g-sm-4 sd-g-md-4 sd-g-lg-4 docutils">
 <div class="sd-col sd-d-flex-row docutils">
@@ -383,7 +384,7 @@
 <div class="sd-card-body docutils">
 <div class="sd-card-title sd-font-weight-bold docutils">
 Getting started</div>
-<p class="sd-card-text">Information regarding this template and how to modify it for your own project.</p>
+<p class="sd-card-text">Dependencies, installation instructions &amp; contribution guide.</p>
 </div>
 <div class="sd-card-footer docutils">
 <p class="sd-card-text"><span class="sd-d-grid"><a class="sd-sphinx-override sd-btn sd-text-wrap sd-btn-secondary sd-stretched-link reference internal" href="quick_start.html#quick-start"><span class="std std-ref">To the getting started guideline</span></a></span></p>
@@ -396,8 +397,8 @@ Getting started</div>
 <div class="sd-card-body docutils">
 <div class="sd-card-title sd-font-weight-bold docutils">
 User guide</div>
-<p class="sd-card-text">An example of narrative documentation. Here, we will explain how to create your
-own <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> estimator.</p>
+<p class="sd-card-text">The user guide explains why imbalanced learning methods require calibration, and how to
+easily apply these methods using <code class="docutils literal notranslate"><span class="pre">imbalanced-calibrate</span></code>.</p>
 </div>
 <div class="sd-card-footer docutils">
 <p class="sd-card-text"><span class="sd-d-grid"><a class="sd-sphinx-override sd-btn sd-text-wrap sd-btn-secondary sd-stretched-link reference internal" href="user_guide.html#user-guide"><span class="std std-ref">To the user guide</span></a></span></p>
@@ -410,8 +411,7 @@ own <code class="docutils literal notranslate"><span class="pre">scikit-learn</s
 <div class="sd-card-body docutils">
 <div class="sd-card-title sd-font-weight-bold docutils">
 API reference</div>
-<p class="sd-card-text">An example of API documentation. This is an example how to use <code class="docutils literal notranslate"><span class="pre">sphinx</span></code> to
-automatically generate reference API page.</p>
+<p class="sd-card-text">Detailed description of the <code class="docutils literal notranslate"><span class="pre">imbalanced-calibrate</span></code> API.</p>
 </div>
 <div class="sd-card-footer docutils">
 <p class="sd-card-text"><span class="sd-d-grid"><a class="sd-sphinx-override sd-btn sd-text-wrap sd-btn-secondary sd-stretched-link reference internal" href="api.html#api"><span class="std std-ref">To the reference guide</span></a></span></p>
@@ -424,8 +424,7 @@ automatically generate reference API page.</p>
 <div class="sd-card-body docutils">
 <div class="sd-card-title sd-font-weight-bold docutils">
 Examples</div>
-<p class="sd-card-text">A set of examples. It complements the User Guide and it is the right place to
-show how to use your compatible estimator.</p>
+<p class="sd-card-text">A set of examples.</p>
 </div>
 <div class="sd-card-footer docutils">
 <p class="sd-card-text"><span class="sd-d-grid"><a class="sd-sphinx-override sd-btn sd-text-wrap sd-btn-secondary sd-stretched-link reference internal" href="auto_examples/index.html#general-examples"><span class="std std-ref">To the gallery of examples</span></a></span></p>
