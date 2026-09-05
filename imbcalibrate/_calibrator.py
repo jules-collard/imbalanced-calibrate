@@ -43,7 +43,8 @@ class PriorCalibratedClassifier(MetaEstimatorMixin, ClassifierMixin, BaseEstimat
         available, or the resampler's sampling strategy when applicable.
         When provided, weight acts as an override and will be used instead of
         the estimator's attributes. If the estimator does not have these attributes and
-        weight is `None`, a warning is issued and the weight will default to 1.0.
+        weight is `None`, a warning is issued and the weight will default to 1.0
+        (i.e. no effect).
 
     Attributes
     ----------

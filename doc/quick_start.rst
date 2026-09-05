@@ -40,5 +40,9 @@ Contribute
 ==========
 
 You can contribute to this package through a Pull Request on `GitHub`_, subject to appropriate unit testing and review.
+If you have any feature requests or suggestions, or encounter any errors or unexpected behaviour, please raise them either
+in `issues`_ or `discussions`_ . If you use this package in your work, please do let me know!
 
 .. _GitHub: https://github.com/jules-collard/imbalanced-calibrate
+.. _issues: https://github.com/jules-collard/imbalanced-calibrate/issues
+.. _discussions: https://github.com/jules-collard/imbalanced-calibrate

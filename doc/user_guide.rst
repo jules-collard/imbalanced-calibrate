@@ -42,9 +42,9 @@ Although this correction is well-documented in the literature, confusion can ari
 notation and parameterisations. Manually applying the correction reduces reproducibility and can create
 confusion, for example when saving or sharing a model object. Furthermore, for some parameterisations
 (such as ``sklearn``'s ``class_weight``), the correction is a function of both the training data and
-parameter value.
+parameter value, creating an additional potential source of error.
 
-To address this issue, this library provides the :class:`PriorCalibratedClassifier` class, which acts
+To address this issue, ``imbalanced-calibrate`` provides the :class:`PriorCalibratedClassifier` class, which acts
 as a calibration wrapper (similar to :class:`sklearn.calibration.CalibratedClassifierCV`) around any
 ``sklearn``-compatible binary classifier. In particular, the implementation automatically calculates the
 correct correction by inspecting the sub-estimator's (or ``imbalanced-learn`` resampler's) parameters.
@@ -185,3 +185,14 @@ data distribution.
     &\vdots \\
     p &= \frac{\frac{p_w}{w(1-p_w)}}{1 + \frac{p_w}{w(1-p_w)}} \\
     &= \frac{p_w}{w(1-p_w) + p_w}
+
+References & Further Reading
+----------------------------
+
+Caplin, A., Martin, D., and Marx, P. (2022). Calibrating for Class Weights by Modeling Machine Learning. arXiv:2205.04613 [cs.LG].
+
+Chawla, N. V., Japkowicz, N., and Kotcz, A. (2004). Editorial: special issue on learning from imbalanced data sets. SIGKDD Explor. Newsl., 6(1):1–6.
+
+Elkan, C. (2001). The foundations of cost-sensitive learning. In Proceedings of the 17th international joint conference on Artificial intelligence - Volume 2, IJCAI’01, pages 973–978, San Francisco, CA, USA. Morgan Kaufmann Publishers Inc.
+
+He, H. and Ma, Y. (2013). Imbalanced learning : foundations, algorithms, and applications. Wiley, Hoboken, NJ.

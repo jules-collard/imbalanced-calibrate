@@ -37,3 +37,9 @@ uv add imbalanced-calibrate
 ```
 
 The optional dependencies for resampling methods can be installed using `pip install imbalanced-calibrate[resampling]` or `uv add "imbalanced-calibrate[resampling]"`.
+
+## Contribution
+
+You can contribute to this package through a Pull Request, subject to appropriate unit testing and review.
+If you have any feature requests or suggestions, or encounter any errors or unexpected behaviour, please raise them either
+in [issues](https://github.com/jules-collard/imbalanced-calibrate/issues) or [discussions](https://github.com/jules-collard/imbalanced-calibrate). If you use this package in your work, please do let me know!

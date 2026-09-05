@@ -1,12 +1,8 @@
 name: Documentation
 
 on:
-  push:
-    branches:
-    - main
-  pull_request:
-    branches:
-      - main
+  release:
+    types: [published]
 
 permissions:
   contents: write
@@ -35,9 +31,8 @@ jobs:
         uv run make html
 
     - name: Update the main gh-page website
-      if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
       uses: peaceiris/actions-gh-pages@v4.1.0
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./doc/_build/html
-        commit_message: "[ci skip] ${{ github.event.head_commit.message }}"
+        commit_message: "Documentation for ${{ github.event.release.tag_name }}"
