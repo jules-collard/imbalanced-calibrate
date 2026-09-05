@@ -7,7 +7,7 @@ API Reference
 .. currentmodule:: imbcalibrate
 
 PriorCalibratedClassifier
-=========
+=========================
 
 .. autosummary::
    :toctree: generated/

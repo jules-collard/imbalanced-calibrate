@@ -1,0 +1,690 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>User guide : contents &#8212; Imbalanced Calibrate 0.1.dev48+g881d7f2a4 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="_static/css/project-template.css?v=352684a6" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery.css?v=fd6457a4" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/css/project-template.css?v=352684a6" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="_static/scripts/fontawesome.js?digest=cb8930eaaf36d9849b67"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
+
+    <script src="_static/documentation_options.js?v=e5bae8f3"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/sg-tags.js?v=d80f6fa4"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'user_guide';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="API Reference" href="api.html" />
+    <link rel="prev" title="Getting started" href="quick_start.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.1.dev48+g881d7f2a4" />
+  
+    
+    <script src="_static/searchtools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Imbalanced Calibrate 0.1.dev48+g881d7f2a4 documentation - Home"/>
+    <img src="_static/logo.png" class="logo__image only-dark pst-js-only" alt="Imbalanced Calibrate 0.1.dev48+g881d7f2a4 documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="quick_start.html">
+    Getting started
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="#">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="api.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="auto_examples/index.html">
+    Example Gallery
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/jules-collard/imbalanced-calibrate" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="quick_start.html">
+    Getting started
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="#">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="api.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="auto_examples/index.html">
+    Example Gallery
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/jules-collard/imbalanced-calibrate" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">User guide : contents</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="user-guide">
+<span id="id1"></span><h1>User Guide<a class="headerlink" href="#user-guide" title="Link to this heading">#</a></h1>
+<section id="introduction-to-imbalanced-learning">
+<h2>Introduction to Imbalanced Learning<a class="headerlink" href="#introduction-to-imbalanced-learning" title="Link to this heading">#</a></h2>
+<p>Class imbalance occurs when, for a classification problem, one target variable
+class is much less frequent than the other(s). This phenomenon creates challenges when
+training classifiers, as models tend to learn more from the majority class, leading to
+poor performance on the minority class. With smaller datasets and/or very high class
+imbalance, there can also simply be too few samples in the minority class to learn from.
+Typical solutions are either data-based or algorithmic.</p>
+<p>Data-based techniques involve balancing the distribution of the target variable with
+undersampling, oversampling, or a mixture of the two. The <code class="docutils literal notranslate"><span class="pre">imbalanced-learn</span></code> library implements
+many of these methods whilst integrating with the <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> API. See the <code class="docutils literal notranslate"><span class="pre">imbalanced-learn</span></code>
+<a class="reference external" href="https://imbalanced-learn.org/stable/user_guide.html">user guide</a> for further information on the implemented resampling techniques.</p>
+<p>Algorithmic techniques involve training models with respect to a modified loss function, typically
+increasing the loss associated with misclassifying the minority class. In particular, the
+<em>weighted cross-entropy loss</em> is implemented through the <code class="docutils literal notranslate"><span class="pre">class_weight</span></code> parameter in <code class="docutils literal notranslate"><span class="pre">sklearn</span></code>
+classifiers, and <code class="docutils literal notranslate"><span class="pre">scale_pos_weight</span></code> parameter in the <code class="docutils literal notranslate"><span class="pre">xgboost</span></code> and <code class="docutils literal notranslate"><span class="pre">lightgbm</span></code> packages.</p>
+<section id="the-calibration-problem">
+<h3>The Calibration Problem<a class="headerlink" href="#the-calibration-problem" title="Link to this heading">#</a></h3>
+<p>The main drawback to these methods is that they introduce bias. For both data-based and algorithmic
+methods, models are not calibrated to the original data distribution, and instead the new distribution
+induced by resampling or weighting the loss function. Resulting probability estimates thus cannot be
+interpreted directly, and probability-based evaluation metrics become inaccurate.</p>
+<p>Fortunately, in the case of random undersampling, random oversampling, or the weighted cross-entropy
+loss, an analytical correction exists which transforms model output back to the true data distribution.
+Although this correction is well-documented in the literature, confusion can arise due to differing
+notation and parameterisations. Manually applying the correction reduces reproducibility and can create
+confusion, for example when saving or sharing a model object. Furthermore, for some parameterisations
+(such as <code class="docutils literal notranslate"><span class="pre">sklearn</span></code>’s <code class="docutils literal notranslate"><span class="pre">class_weight</span></code>), the correction is a function of both the training data and
+parameter value.</p>
+<p>To address this issue, this library provides the <code class="xref py py-class docutils literal notranslate"><span class="pre">PriorCalibratedClassifier</span></code> class, which acts
+as a calibration wrapper (similar to <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.calibration.CalibratedClassifierCV.html#sklearn.calibration.CalibratedClassifierCV" title="(in scikit-learn v1.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">sklearn.calibration.CalibratedClassifierCV</span></code></a>) around any
+<code class="docutils literal notranslate"><span class="pre">sklearn</span></code>-compatible binary classifier. In particular, the implementation automatically calculates the
+correct correction by inspecting the sub-estimator’s (or <code class="docutils literal notranslate"><span class="pre">imbalanced-learn</span></code> resampler’s) parameters.</p>
+</section>
+</section>
+<section id="imbalanced-calibrate-api">
+<h2>imbalanced-calibrate API<a class="headerlink" href="#imbalanced-calibrate-api" title="Link to this heading">#</a></h2>
+<p><code class="xref py py-class docutils literal notranslate"><span class="pre">PriorCalibratedClassifier</span></code> is fully integrated within the <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> API, acting as as Meta-Estimator
+and Classifier object. As with all <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> estimators, it implements the <code class="docutils literal notranslate"><span class="pre">fit</span></code>, <code class="docutils literal notranslate"><span class="pre">predict_proba</span></code> and
+<code class="docutils literal notranslate"><span class="pre">predict</span></code> methods.</p>
+<p>The <code class="xref py py-class docutils literal notranslate"><span class="pre">PriorCalibratedClassifier</span></code> takes an (untrained) classifier and optional <code class="docutils literal notranslate"><span class="pre">weight</span></code>
+parameter at instantiation, for example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">imbcalibrate</span><span class="w"> </span><span class="kn">import</span> <span class="n">PriorCalibratedClassifier</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.linear_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">LogisticRegression</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">clf</span> <span class="o">=</span> <span class="n">PriorCalibratedClassifier</span><span class="p">(</span><span class="n">LogisticRegression</span><span class="p">(</span><span class="n">class_weight</span><span class="o">=</span><span class="s1">'balanced'</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Calling <code class="docutils literal notranslate"><span class="pre">clf.fit(X,</span> <span class="pre">y)</span></code> fits the sub-estimator to the data, and infers the weight from the sub-estimator’s
+parameters (and training data when applicable) when possible. If <code class="docutils literal notranslate"><span class="pre">weight</span></code> is provided at instatiation,
+it overrides any inferred weight. Currently weight inference is implemented for the following estimator objects
+(in order of priority):</p>
+<ul class="simple">
+<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">imblearn.pipeline.Pipeline</span></code>: weight is inferred from the first instance of <code class="xref py py-class docutils literal notranslate"><span class="pre">RandomOverSampler</span></code> or <code class="xref py py-class docutils literal notranslate"><span class="pre">RandomUnderSampler</span></code> encountered in the pipeline steps.</p></li>
+<li><p><a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.pipeline.Pipeline.html#sklearn.pipeline.Pipeline" title="(in scikit-learn v1.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">sklearn.pipeline.Pipeline</span></code></a>: weight is inferred from the last step of the pipeline, provided it is as classifier (also applies to <code class="xref py py-class docutils literal notranslate"><span class="pre">imblearn.pipeline.Pipeline</span></code> if no sampler is found).</p></li>
+<li><p>Any <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> classifier implementing the <code class="docutils literal notranslate"><span class="pre">class_weight</span></code> parameter.</p></li>
+<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">xgboost.XGBClassifier</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">lightgbm.LGBClassifier</span></code>, or any similar estimator which implements the <code class="docutils literal notranslate"><span class="pre">scale_pos_weight</span></code> parameter.</p></li>
+</ul>
+<p>Once fitted, calls to <code class="docutils literal notranslate"><span class="pre">clf.predict_proba(X)</span></code> and <code class="docutils literal notranslate"><span class="pre">clf.predict(X)</span></code> use the calibration-corrected probability
+estimates. Crucially, this behaviour persists with model object saving/loading, as the weight is set and saved at
+<code class="docutils literal notranslate"><span class="pre">fit</span></code> time. The fitted sub-estimator can be accessed through the <code class="docutils literal notranslate"><span class="pre">estimator_</span></code> attribute.</p>
+</section>
+<section id="mathematical-formulation">
+<h2>Mathematical Formulation<a class="headerlink" href="#mathematical-formulation" title="Link to this heading">#</a></h2>
+<section id="weighted-cross-entropy-loss">
+<h3>Weighted Cross-Entropy Loss<a class="headerlink" href="#weighted-cross-entropy-loss" title="Link to this heading">#</a></h3>
+<p>Let <span class="math notranslate nohighlight">\(Y \sim \mathbb{P}\)</span> be a binary random variable taking values 0 and 1, with <span class="math notranslate nohighlight">\(\pi_0 = \mathbb{P}(Y=0)\)</span>
+and <span class="math notranslate nohighlight">\(\pi_1 = \mathbb{P}(Y=1)\)</span>. Recall the binary cross-entropy loss is given by</p>
+<div class="math notranslate nohighlight">
+\[L(y, \hat{p}) = -y\log{\hat{p}} - (1-y)\log{(1-\hat{p})},\]</div>
+<p>for a probability estimate <span class="math notranslate nohighlight">\(\hat{p}\)</span>. W.l.o.g., we assume that <span class="math notranslate nohighlight">\(Y=1\)</span> is the minority class, in which case
+the <em>weighted</em> cross-entropy loss can be defined as</p>
+<div class="math notranslate nohighlight">
+\[L^w(y, \hat{p}) = -y w \log{\hat{p}} - (1-y)\log{(1-\hat{p})},\]</div>
+<p>for some weight <span class="math notranslate nohighlight">\(w &gt; 1\)</span>. Now, we have</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathbb{E}_\mathbb{P}[L^w(y, \hat{p})] &amp;= \mathbb{P}(Y=1)\mathbb{E}[L^w(1, \hat{p})|Y=1] +
+\mathbb{P}(Y=0)\mathbb{E}[L^w(0, \hat{p})|Y=0] \\
+&amp;= w \pi_1 \mathbb{E}[L(1, \hat{p})|Y=1] + \pi_0 \mathbb{E}[L(0, \hat{p})|Y=0] \\
+&amp;\propto \mathbb{P}_w(Y=1)\mathbb{E}[L(1, \hat{p})|Y=1] +
+\mathbb{P}_w(Y=0)\mathbb{E}[L(0, \hat{p})|Y=0] \\
+&amp;= \mathbb{E}_{\mathbb{P}_w}[L(y,\hat{p})],\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mathbb{P}_w\)</span> is an implicit probability measure induced by <span class="math notranslate nohighlight">\(w\)</span>, with
+<span class="math notranslate nohighlight">\(\mathbb{P}_w(Y=0)=\pi_0/z\)</span> and <span class="math notranslate nohighlight">\(\mathbb{P}_w(Y=1)=(w\pi_1)/z\)</span>, where <span class="math notranslate nohighlight">\(z = \pi_0 + w\pi_1\)</span>
+is a normalising constant. We assume that <span class="math notranslate nohighlight">\(\mathbb{P}(\cdot|Y) = \mathbb{P}_w(\cdot|Y)\)</span>, since the
+weight is entirely determined by the label <span class="math notranslate nohighlight">\(Y\)</span>.</p>
+<p>Notice that the prior odds induced by the weighting are given by</p>
+<div class="math notranslate nohighlight">
+\[O_w = \frac{w \pi_1 / z}{\pi_0 / z} = w \frac{\pi_1}{\pi_0} = w \cdot O.\]</div>
+<p>That is, minimising a weighted loss (with weight <span class="math notranslate nohighlight">\(w\)</span>) under the true distribution <span class="math notranslate nohighlight">\(\mathbb{P}\)</span>
+is proportional to minimising an unweighted loss under the <em>artificial data distribution</em> <span class="math notranslate nohighlight">\(\mathbb{P}_w\)</span>,
+for which the odds of the positive class are multiplied by <span class="math notranslate nohighlight">\(w\)</span>.</p>
+</section>
+<section id="resampling-methods">
+<h3>Resampling Methods<a class="headerlink" href="#resampling-methods" title="Link to this heading">#</a></h3>
+<p>In fact, there is a one-to-one relationship between the changes in prior odds induced by the weighted loss
+and resampling methods. The methods below rely on the assumption that the conditional distributions are not
+affected by resampling, i.e. <span class="math notranslate nohighlight">\(P(\cdot|Y, S) = P(\cdot|Y)\)</span>, where <span class="math notranslate nohighlight">\(S\)</span> is a random variable indicating
+whether an observation is included in the resampled dataset. In practice, this assumption only holds for
+<a class="reference external" href="https://imbalanced-learn.org/stable/over_sampling.html#naive-random-over-sampling">random oversampling</a> and <a class="reference external" href="https://imbalanced-learn.org/stable/under_sampling.html#random-under-sampling">random undersampling</a> .</p>
+<section id="oversampling">
+<h4>Oversampling<a class="headerlink" href="#oversampling" title="Link to this heading">#</a></h4>
+<p>Let <span class="math notranslate nohighlight">\(N_0\)</span> and <span class="math notranslate nohighlight">\(N_1\)</span> be the number of samples of each class in the dataset, so that the empirical
+probability distribution is given by <span class="math notranslate nohighlight">\(\hat{\mathbb{P}}(Y=1) = N_1/(N_0+N_1)\)</span>, with empirical odds ratio
+<span class="math notranslate nohighlight">\(\hat{O}=N_1/N_0\)</span>. Suppose we oversample with rate <span class="math notranslate nohighlight">\(w &gt; 1\)</span>, so that the oversampled dataset has
+<span class="math notranslate nohighlight">\(wN_1\)</span> samples of the positive/minority class. The new empirical odds ratio is given by</p>
+<div class="math notranslate nohighlight">
+\[\hat{O}_w = \frac{w N_1}{N_0} = w \hat{O}.\]</div>
+<p>That is, oversampling with rate <span class="math notranslate nohighlight">\(w\)</span> results in the same shift in prior odds ratio as using the weight <span class="math notranslate nohighlight">\(w\)</span>
+in a weighted cross-entropy loss.</p>
+</section>
+<section id="undersampling">
+<h4>Undersampling<a class="headerlink" href="#undersampling" title="Link to this heading">#</a></h4>
+<p>Similarly, suppose we undersample with rate <span class="math notranslate nohighlight">\(1/w\)</span>, so that the undersampled dataset has <span class="math notranslate nohighlight">\(N_0/w\)</span> samples
+of the negative/majority class. We obtain the same shift in odds ratio:</p>
+<div class="math notranslate nohighlight">
+\[\hat{O}_w = \frac{N_1}{N_0/w} = w \hat{O}.\]</div>
+</section>
+<section id="imbalanced-learn-parameterisation">
+<h4>Imbalanced-Learn Parameterisation<a class="headerlink" href="#imbalanced-learn-parameterisation" title="Link to this heading">#</a></h4>
+<p>In <code class="docutils literal notranslate"><span class="pre">imbalanced-learn</span></code> samplers, the sampling rates are specified by the <code class="docutils literal notranslate"><span class="pre">sampling_strategy</span></code> parameter, which is defined
+as “the desired ratio of the number of samples in the minority class over the number of samples in the majority class
+after resampling.” That is, the <code class="docutils literal notranslate"><span class="pre">sampling_strategy</span></code> parameter corresponds to the desired odds ratio <span class="math notranslate nohighlight">\(\hat{O}_w\)</span>.
+To recover the weight, we simply have</p>
+<div class="math notranslate nohighlight">
+\[w = \hat{O}_w / \hat{O} = \frac{N_1^s}{N_0^s} \cdot \frac{N_0}{N_1},\]</div>
+<p>where <span class="math notranslate nohighlight">\(N_0^s\)</span> and <span class="math notranslate nohighlight">\(N_1^s\)</span> are the number of samples in the negative and positive classes respectively in the
+resampled dataset.</p>
+</section>
+</section>
+<section id="applying-the-correction">
+<h3>Applying the Correction<a class="headerlink" href="#applying-the-correction" title="Link to this heading">#</a></h3>
+<p>We have established the equivalence in odds ratio shift between the weighted loss, over- and under-sampling in terms
+of a weight <code class="docutils literal notranslate"><span class="pre">w</span></code>. It remains to transform the estimated (uncalibrated) probability estimates <span class="math notranslate nohighlight">\(p_w\)</span> to the true
+data distribution.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}O_w &amp;= w \cdot O \\
+\frac{p_w}{1-p_w} &amp;= w \cdot \frac{p}{1-p} \\
+&amp;\vdots \\
+p &amp;= \frac{\frac{p_w}{w(1-p_w)}}{1 + \frac{p_w}{w(1-p_w)}} \\
+&amp;= \frac{p_w}{w(1-p_w) + p_w}\end{split}\]</div>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="quick_start.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Getting started</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="api.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">API Reference</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-imbalanced-learning">Introduction to Imbalanced Learning</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-calibration-problem">The Calibration Problem</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#imbalanced-calibrate-api">imbalanced-calibrate API</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-formulation">Mathematical Formulation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#weighted-cross-entropy-loss">Weighted Cross-Entropy Loss</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resampling-methods">Resampling Methods</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oversampling">Oversampling</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#undersampling">Undersampling</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#imbalanced-learn-parameterisation">Imbalanced-Learn Parameterisation</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#applying-the-correction">Applying the Correction</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  
+  <div class="tocsection editthispage">
+    <a href="https://github.com/jules-collard/imbalanced-calibrate/edit/main/doc/user_guide.rst">
+      <i class="fa-solid fa-pencil"></i>
+      
+      
+        
+          Edit on GitHub
+        
+      
+    </a>
+  </div>
+</div>
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="_sources/user_guide.rst.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2026, Jules Lanari-Collard.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.21.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

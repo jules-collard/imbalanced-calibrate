@@ -4,7 +4,13 @@
 Getting started
 ###############
 
-This package provides analytical prior calibration utilities to correct probability estimates from binary classifiers trained with class rebalancing techniques.
+This package provides ``sklearn``-compatible calibration methods which correct model output for the bias induced
+by certain imbalanced learning techniques. It supports class weighting in ``sklearn`` binary classifiers 
+(including `XGBoost`_  and `LightGBM`_ ), and resampling methods from the `imbalanced-learn`_ package.
+
+.. _XGBoost: https://xgboost.readthedocs.io/en/stable/
+.. _LightGBM: https://lightgbm.readthedocs.io/en/stable/
+.. _imbalanced-learn: https://imbalanced-learn.org/stable/
 
 Prerequisites
 =============
@@ -22,16 +28,13 @@ Additionally, ``imbalanced-calibrate`` requires the following optional dependenc
 Install
 =======
 
-From PyPI
----------
-
 ``imbalanced-calibrate`` is currently available on the PyPI repository and you can install it via ``pip``: ::
     pip install imbalanced-calibrate
 
 Or with ``uv``: ::
     uv add imbalanced-calibrate
 
-The optional dependencies for resampling methods can be installed using ``pip install imbalanced-calibrate[resampling]`` or ``uv add "imbalanced-calibrate[resampling]".
+The optional dependencies for resampling methods can be installed using ``pip install imbalanced-calibrate[resampling]`` or ``uv add "imbalanced-calibrate[resampling]"``.
 
 Contribute
 ==========

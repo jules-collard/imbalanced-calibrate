@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Getting started &#8212; Imbalanced Calibrate 0.1.dev35+g4203cbc49 documentation</title>
+    <title>Getting started &#8212; Imbalanced Calibrate 0.1.dev48+g881d7f2a4 documentation</title>
   
   
   
@@ -45,7 +45,7 @@
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
 
-    <script src="_static/documentation_options.js?v=52797e11"></script>
+    <script src="_static/documentation_options.js?v=e5bae8f3"></script>
     <script src="_static/doctools.js?v=fd6eb6e6"></script>
     <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="_static/sg-tags.js?v=d80f6fa4"></script>
@@ -54,11 +54,11 @@
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="API Reference" href="api.html" />
+    <link rel="next" title="User Guide" href="user_guide.html" />
     <link rel="prev" title="imbalanced-calibrate documentation" href="index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="0.1.dev35+g4203cbc49" />
+  <meta name="docsearch:version" content="0.1.dev48+g881d7f2a4" />
   
     
     <script src="_static/searchtools.js"></script>
@@ -130,8 +130,8 @@
       
     
     
-    <img src="_static/logo.png" class="logo__image only-light" alt="Imbalanced Calibrate 0.1.dev35+g4203cbc49 documentation - Home"/>
-    <img src="_static/logo.png" class="logo__image only-dark pst-js-only" alt="Imbalanced Calibrate 0.1.dev35+g4203cbc49 documentation - Home"/>
+    <img src="_static/logo.png" class="logo__image only-light" alt="Imbalanced Calibrate 0.1.dev48+g881d7f2a4 documentation - Home"/>
+    <img src="_static/logo.png" class="logo__image only-dark pst-js-only" alt="Imbalanced Calibrate 0.1.dev48+g881d7f2a4 documentation - Home"/>
   
   
 </a></div>
@@ -149,6 +149,13 @@
 <li class="nav-item current active">
   <a class="nav-link nav-internal" href="#">
     Getting started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="user_guide.html">
+    User Guide
   </a>
 </li>
 
@@ -269,6 +276,13 @@
 
 
 <li class="nav-item ">
+  <a class="nav-link nav-internal" href="user_guide.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
   <a class="nav-link nav-internal" href="api.html">
     API Reference
   </a>
@@ -379,7 +393,9 @@
                   
   <section id="getting-started">
 <span id="quick-start"></span><h1>Getting started<a class="headerlink" href="#getting-started" title="Link to this heading">#</a></h1>
-<p>This package provides analytical prior calibration utilities to correct probability estimates from binary classifiers trained with class rebalancing techniques.</p>
+<p>This package provides <code class="docutils literal notranslate"><span class="pre">sklearn</span></code>-compatible calibration methods which correct model output for the bias induced
+by certain imbalanced learning techniques. It supports class weighting in <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> binary classifiers
+(including <a class="reference external" href="https://xgboost.readthedocs.io/en/stable/">XGBoost</a>  and <a class="reference external" href="https://lightgbm.readthedocs.io/en/stable/">LightGBM</a> ), and resampling methods from the <a class="reference external" href="https://imbalanced-learn.org/stable/">imbalanced-learn</a> package.</p>
 <section id="prerequisites">
 <h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading">#</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">imbalanced-calibrate</span></code> requires the following dependencies:</p>
@@ -395,16 +411,13 @@
 </section>
 <section id="install">
 <h2>Install<a class="headerlink" href="#install" title="Link to this heading">#</a></h2>
-<section id="from-pypi">
-<h3>From PyPI<a class="headerlink" href="#from-pypi" title="Link to this heading">#</a></h3>
 <dl class="simple">
 <dt><code class="docutils literal notranslate"><span class="pre">imbalanced-calibrate</span></code> is currently available on the PyPI repository and you can install it via <code class="docutils literal notranslate"><span class="pre">pip</span></code>: ::</dt><dd><p>pip install imbalanced-calibrate</p>
 </dd>
 <dt>Or with <code class="docutils literal notranslate"><span class="pre">uv</span></code>: ::</dt><dd><p>uv add imbalanced-calibrate</p>
 </dd>
 </dl>
-<p>The optional dependencies for resampling methods can be installed using <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">imbalanced-calibrate[resampling]</span></code> or <a href="#id1"><span class="problematic" id="id2">``</span></a>uv add “imbalanced-calibrate[resampling]”.</p>
-</section>
+<p>The optional dependencies for resampling methods can be installed using <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">imbalanced-calibrate[resampling]</span></code> or <code class="docutils literal notranslate"><span class="pre">uv</span> <span class="pre">add</span> <span class="pre">&quot;imbalanced-calibrate[resampling]&quot;</span></code>.</p>
 </section>
 <section id="contribute">
 <h2>Contribute<a class="headerlink" href="#contribute" title="Link to this heading">#</a></h2>
@@ -432,11 +445,11 @@
       </div>
     </a>
     <a class="right-next"
-       href="api.html"
+       href="user_guide.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">API Reference</p>
+        <p class="prev-next-title">User Guide</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -460,10 +473,7 @@
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prerequisites">Prerequisites</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install">Install</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#from-pypi">From PyPI</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install">Install</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contribute">Contribute</a></li>
 </ul>
   </nav></div>
